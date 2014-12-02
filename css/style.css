@@ -1,0 +1,204 @@
+/*
+*  Author: Ouya Zhang
+*  Date: Mar.06, 2014
+*  Content: stylesheet for homepage
+*/
+html, body, #map-canvas {
+	height: 100%;
+	margin: 0px;
+	padding: 0px
+}
+
+li {
+    margin: 2px;
+    position: relative;
+    padding: 4px 0;
+    cursor: pointer;
+    float: left;
+    list-style: none;
+}
+
+span.ui-icon {
+    float: left;
+    margin: 0 4px;
+}
+
+.ui-widget-header {
+    display: inline-block;
+}
+
+.ui-corner-all {
+    display: inline-block;
+}
+
+.search_position{
+    float: left;
+    padding: 4px 0;
+}
+
+.search_position_2 {
+    float: left;
+    padding: 2px 0;
+}
+
+.ui-state-default {
+    padding: 1px 0;
+}
+
+#search_container {
+    color: black;
+    font-family: Calibri;
+    font-size: 12px;
+	opacity:0.95;
+    position: absolute;
+    top: 5px;
+    left: 3%;
+    z-index: 10;
+    padding: 2px 0;
+    height: 30px;
+    font: 82.5% "Trebuchet MS", sans-serif;
+
+}
+
+#genus {
+color: black;
+font-family: Calibri;
+font-size: 12px;
+opacity: 0.95;
+position: absolute;
+top: 7px;
+left: 17.5%;
+z-index: 10;
+padding: 5px;
+height: 20px;
+font: 82.5% "Trebuchet MS", sans-serif;
+}
+
+#species {
+color: black;
+font-family: Calibri;
+font-size: 12px;
+opacity: 0.95;
+position: absolute;
+top: 7px;
+left: 22%;
+z-index: 10;
+padding: 5px;
+height: 20px;
+font: 82.5% "Trebuchet MS", sans-serif;
+}
+
+#submit {
+color: black;
+font-family: Calibri;
+font-size: 12px;
+opacity: 0.95;
+position: absolute;
+top: 7px;
+left: 27%;
+z-index: 10;
+padding: 5px;
+height: 20px;
+font: 82.5% "Trebuchet MS", sans-serif;
+}
+
+#search_bar {
+    float: left;
+    padding: 1px 0;
+}
+
+#map_selector {
+	opacity:0.9;
+	position: absolute;
+	bottom: 0px;
+	left: 10%;
+	z-index: 10;
+    padding: 0 0;
+    font: 62.5% "Trebuchet MS", sans-serif;
+}
+
+.ui-autocomplete {
+    font: 62.5% "Trebuchet MS", sans-serif;
+    margin: 50px;
+    max-width: 140px;
+    height: 200px; 
+    overflow-y: scroll; 
+    overflow-x: hidden;
+}
+
+#tool_bar_tabs {
+    font: 62.5% "Trebuchet MS", sans-serif;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+}
+
+#layer_control_container {
+    font: 62.5% "Trebuchet MS", sans-serif;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    height: 30px;
+    font: 82.5% "Trebuchet MS", sans-serif;
+}
+
+#layer_control {
+    width: 150px;
+}
+
+#layer_control_button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font: 82.5% "Trebuchet MS", sans-serif;
+}
+
+#welcome {
+    height: 350px;
+    width: 350px;
+    z-index: 10;
+    text-align: center;
+    position: absolute;
+    left: 35%;
+    top: 25%;
+    font: 82.5% "Trebuchet MS", sans-serif;
+    
+}
+
+#welcome_title {
+    width: 340px;
+    height: 50px;
+    padding: 4px 0;
+}
+
+#welcome_close {
+    width: 345px;
+    position: relative;
+    right: 0;
+    top: 0;
+}
+
+#search_spatial {
+    position: absolute;
+    top: 0;
+    right: 15%;
+    font: 82.5% "Trebuchet MS", sans-serif;
+    display: inline-block;
+    height: 30px;
+    padding: 2.5px 0;
+}
+
+#set_distance {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+
+
+
+
+
+

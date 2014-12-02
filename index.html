@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>Map of Species</title>
+		<style type="text/css">
+			html, body, #map-canvas {height: 100%; margin: 0; padding: 0;}
+		</style>
+		
+		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+
+		<script type="text/javascript" src="js/map_loader.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+	
+	</head>
+	
+	<body>
+
+		<div id="search_container" class="ui-widget-header ui-corner-all" style="background-image: url(images/red.png);">
+            <div id="search_title" class="search_position">
+                <div class="search_position">Search</div>
+                <li id="show_search_bar" class="ui-state-default ui-corner-all" title="start searching!">
+                    <span class="ui-icon ui-icon-triangle-1-e"></span>
+                </li>
+            </div>
+            <div id="search_bar" class="search_position">
+                <div class="search_position">
+                    <div class="search_box_div">
+                        <input type="text" value="Enter species name here" id="search_box" />
+                    </div>
+                </div>
+                <div class="search_position_2">
+                    <li class="ui-state-default ui-corner-all"  title="click to search" id="search_button">
+                        <span class="ui-icon ui-icon-search"></span>
+                    </li>
+                    <li class="ui-state-default ui-corner-all" title="clear results" id="clear_search">
+                        <span class="ui-icon ui-icon-trash"></span>
+                    </li>
+                    <li id="hide_search_bar" class="ui-state-default ui-corner-all" title="hide">
+                        <span class="ui-icon ui-icon-triangle-1-w"></span>
+                    </li>
+                </div>
+            </div>
+            <!--<div id="genus_bar" class="search_position"><select><option>Genus</option></select> </div>
+            <div id="species_bar" class="search_position"><select><option>Species</option></select> </div>-->
+        </div>
+
+        <div id="genus" style="background-image: url(images/red.png);"><select><option>Genus</option></select></div>
+
+        <div id="species" style="background-image: url(images/red.png);"><select><option>Species</option></select></div>
+
+        <div id="submit" style="background-image: url(images/red.png);"><button type="button">Add Query</button></div>
+
+        
+		
+		<div id="map-canvas"></div>
+	
+	</body>
+
+</html>
