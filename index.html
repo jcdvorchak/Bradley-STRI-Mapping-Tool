@@ -7,6 +7,7 @@
 		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 
 		<script type="text/javascript" src="js/map_loader.js"></script>
+        <script type="text/javascript" src="js/add_to_query.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 	
 	</head>
@@ -41,14 +42,14 @@
                     </li>
                 </div>-->
             </div>
-            <button type="button" style="margin-top: 5px; margin-right: 5px">Add</button>
+            <button type="button" style="margin-top: 5px; margin-right: 5px" onclick="addToList('MyTree')">Add</button>
         </div>
 
         <div id="genus"><select><option>Genus</option></select></div>
 
         <div id="species"><select><option>Species</option></select></div>
 
-        <div id="submit"><button type="button">Add Query</button></div>
+        <div id="submit"><button type="button">Add</button></div>
 
         <form id="radio">
             <input type="radio" name="datatype" checked>STRI<input type="radio" name="datatype">BIEN
@@ -86,7 +87,7 @@
         <div id="QueryListing" style="background-color:#0000FF; width = 200px; height = 80%; position: absolute;
         left: 3%;
         top: 50px;">
-        <button onclick="addToList('MyTree')">Add Tree</button><!--For Testing purposes only. There will be JS in the search that will call addToList()-->
+        <!--For Testing purposes only. There will be JS in the search that will call addToList()-->
         <table id="listTable">
             
         </table>
