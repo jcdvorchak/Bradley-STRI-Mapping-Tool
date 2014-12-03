@@ -3,9 +3,6 @@
 
 	<head>
 		<title>Map of Species</title>
-		<style type="text/css">
-			html, body, #map-canvas {height: 100%; margin: 0; padding: 0;}
-		</style>
 		
 		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 
@@ -16,7 +13,7 @@
 	
 	<body>
 
-		<div id="search_container" class="ui-widget-header ui-corner-all" style="background-image: url(images/red.png);">
+		<div id="search_container" class="ui-widget-header ui-corner-all">
             <div id="search_title" class="search_position">
                 <li></li>
                 <li></li>
@@ -47,20 +44,20 @@
             <button type="button" style="margin-top: 5px; margin-right: 5px">Add</button>
         </div>
 
-        <div id="genus" style="background-image: url(images/red.png);"><select><option>Genus</option></select></div>
+        <div id="genus"><select><option>Genus</option></select></div>
 
-        <div id="species" style="background-image: url(images/red.png);"><select><option>Species</option></select></div>
+        <div id="species"><select><option>Species</option></select></div>
 
-        <div id="submit" style="background-image: url(images/red.png);"><button type="button">Add Query</button></div>
+        <div id="submit"><button type="button">Add Query</button></div>
 
-        <form id="radio" style="background-image: url(images/red.png);">
+        <form id="radio">
             <input type="radio" name="datatype" checked>STRI<input type="radio" name="datatype">BIEN
         </form>
 
         
         <div id="layer_control_container">
             <div id="layer_control">
-                <div id="layer_control_button" class="ui-widget-header ui-corner-all" style="background-image: url(images/red.png);">
+                <div id="layer_control_button" class="ui-widget-header ui-corner-all">
                     <input type="checkbox" value="1" id="layer1"/>Rivers<br />
                     <input type="checkbox" value="2" id="layer2" />Administrative Areas&nbsp&nbsp&nbsp<br />
                     <input type="checkbox" value="3" id="layer3" />Protected Areas<br />
@@ -72,7 +69,7 @@
         </div>
 
         <form>
-            <div id="map_selector" style="background-image: url(images/red.png);">
+            <div id="map_selector">
                 <input type="radio" id="ROADMAP" name="radio" checked="checked" />
                     <label for="ROADMAP">Roadmap</label>
                 <input type="radio" id="SATELLITE" name="radio" />

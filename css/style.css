@@ -57,10 +57,12 @@ span.ui-icon {
     padding: 2px 0;
     height: 30px;
     font: 82.5% "Trebuchet MS", sans-serif;
+    background: #ff0000;
 
 }
 
 #genus {
+<<<<<<< HEAD
 color: black;
 font-family: Calibri;
 font-size: 12px;
@@ -103,6 +105,50 @@ padding: 5px;
 height: 20px;
 font: 82.5% "Trebuchet MS", sans-serif;
 margin-top:3px;
+=======
+    color: black;
+    font-family: Calibri;
+    font-size: 12px;
+    opacity: 0.95;
+    position: absolute;
+    /*top: 7px;*/
+    left: 14%;
+    z-index: 10;
+    padding: 5px;
+    height: 20px;
+    font: 82.5% "Trebuchet MS", sans-serif;
+    background: #ff0000;
+}
+
+#species {
+    color: black;
+    font-family: Calibri;
+    font-size: 12px;
+    opacity: 0.95;
+    position: absolute;
+    /*top: 7px;*/
+    left: 18%;
+    z-index: 10;
+    padding: 5px;
+    height: 20px;
+    font: 82.5% "Trebuchet MS", sans-serif;
+    background: #ff0000;
+}
+
+#submit {
+    color: black;
+    font-family: Calibri;
+    font-size: 12px;
+    opacity: 0.95;
+    position: absolute;
+    /*top: 7px;*/
+    left: 22.5%;
+    z-index: 10;
+    padding: 5px;
+    height: 20px;
+    font: 82.5% "Trebuchet MS", sans-serif;
+    background: #ff0000;
+>>>>>>> origin/master
 }
 
 #radio {
@@ -112,6 +158,7 @@ margin-top:3px;
     z-index:10;
     padding:5px;
     height:20px;
+    background: #ff0000;
 }
 
 #search_bar {
@@ -127,6 +174,7 @@ margin-top:3px;
 	z-index: 10;
     padding: 0 0;
     font: 82.5% "Trebuchet MS", sans-serif;
+    background: #ff0000;
 }
 
 .ui-autocomplete {
@@ -165,6 +213,7 @@ margin-top:3px;
     top: 0;
     right: 0;
     font: 82.5% "Trebuchet MS", sans-serif;
+    background: #ff0000;
 }
 
 #welcome {
