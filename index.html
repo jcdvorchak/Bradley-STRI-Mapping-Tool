@@ -18,10 +18,11 @@
 
 		<div id="search_container" class="ui-widget-header ui-corner-all" style="background-image: url(images/red.png);">
             <div id="search_title" class="search_position">
+                <li></li>
+                <li></li>
                 <div class="search_position">Search</div>
-                <li id="show_search_bar" class="ui-state-default ui-corner-all" title="start searching!">
-                    <span class="ui-icon ui-icon-triangle-1-e"></span>
-                </li>
+                <li></li>
+                <li></li>
             </div>
             <div id="search_bar" class="search_position">
                 <div class="search_position">
@@ -29,7 +30,9 @@
                         <input type="text" value="Enter species name here" id="search_box" />
                     </div>
                 </div>
-                <div class="search_position_2">
+                <li></li>
+                <li></li>
+                <!--<div class="search_position_2">
                     <li class="ui-state-default ui-corner-all"  title="click to search" id="search_button">
                         <span class="ui-icon ui-icon-search"></span>
                     </li>
@@ -39,10 +42,8 @@
                     <li id="hide_search_bar" class="ui-state-default ui-corner-all" title="hide">
                         <span class="ui-icon ui-icon-triangle-1-w"></span>
                     </li>
-                </div>
+                </div>-->
             </div>
-            <!--<div id="genus_bar" class="search_position"><select><option>Genus</option></select> </div>
-            <div id="species_bar" class="search_position"><select><option>Species</option></select> </div>-->
         </div>
 
         <div id="genus" style="background-image: url(images/red.png);"><select><option>Genus</option></select></div>
@@ -51,7 +52,24 @@
 
         <div id="submit" style="background-image: url(images/red.png);"><button type="button">Add Query</button></div>
 
+        <form id="radio" style="background-image: url(images/red.png);">
+            <input type="radio" name="datatype" checked>STRI<input type="radio" name="datatype">BIEN
+        </form>
+
         
+        <div id="layer_control_container">
+            <div id="layer_control">
+                <div id="layer_control_button" class="ui-widget-header ui-corner-all" style="background-image: url(images/red.png);">
+                    <input type="checkbox" value="1" id="layer1"/>Rivers<br />
+                    <input type="checkbox" value="2" id="layer2" />Administrative Areas<br />
+                    <input type="checkbox" value="3" id="layer3" />Protected Areas<br />
+                    <li class="ui-state-default ui-corner-all ui-state-hover" id="hide_layercontrol">
+                        <span class="ui-icon ui-icon-triangle-1-ne"></span>
+                    </li>
+                </div>
+            </div>
+        </div>
+
 		
 		<div id="map-canvas"></div>
 	

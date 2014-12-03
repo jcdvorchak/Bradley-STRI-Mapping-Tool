@@ -51,8 +51,8 @@ span.ui-icon {
     font-size: 12px;
 	opacity:0.95;
     position: absolute;
-    top: 5px;
-    left: 3%;
+    /*top: 5px;
+    /*left: 3%;*/
     z-index: 10;
     padding: 2px 0;
     height: 30px;
@@ -66,8 +66,8 @@ font-family: Calibri;
 font-size: 12px;
 opacity: 0.95;
 position: absolute;
-top: 7px;
-left: 17.5%;
+/*top: 7px;*/
+left: 14%;
 z-index: 10;
 padding: 5px;
 height: 20px;
@@ -80,8 +80,8 @@ font-family: Calibri;
 font-size: 12px;
 opacity: 0.95;
 position: absolute;
-top: 7px;
-left: 22%;
+/*top: 7px;*/
+left: 18%;
 z-index: 10;
 padding: 5px;
 height: 20px;
@@ -94,12 +94,21 @@ font-family: Calibri;
 font-size: 12px;
 opacity: 0.95;
 position: absolute;
-top: 7px;
-left: 27%;
+/*top: 7px;*/
+left: 22.5%;
 z-index: 10;
 padding: 5px;
 height: 20px;
 font: 82.5% "Trebuchet MS", sans-serif;
+}
+
+#radio {
+    position: absolute;
+    top:35px;
+    /*left:50px;*/
+    z-index:10;
+    padding:5px;
+    height:20px;
 }
 
 #search_bar {
