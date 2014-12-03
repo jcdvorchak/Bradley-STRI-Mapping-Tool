@@ -58,61 +58,16 @@ span.ui-icon {
     height: 30px;
     font: 82.5% "Trebuchet MS", sans-serif;
     background: #ff0000;
-
 }
 
 #genus {
-<<<<<<< HEAD
-color: black;
-font-family: Calibri;
-font-size: 12px;
-opacity: 0.95;
-position: absolute;
-/*top: 7px;*/
-left: 300px;
-z-index: 10;
-padding: 5px;
-height: 20px;
-font: 82.5% "Trebuchet MS", sans-serif;
-margin-top:3px;
-}
-
-#species {
-color: black;
-font-family: Calibri;
-font-size: 12px;
-opacity: 0.95;
-position: absolute;
-/*top: 7px;*/
-left: 375px;
-z-index: 10;
-padding: 5px;
-height: 20px;
-font: 82.5% "Trebuchet MS", sans-serif;
-margin-top:3px;
-}
-
-#submit {
-color: black;
-font-family: Calibri;
-font-size: 12px;
-opacity: 0.95;
-position: absolute;
-/*top: 7px;*/
-left: 450px;
-z-index: 10;
-padding: 5px;
-height: 20px;
-font: 82.5% "Trebuchet MS", sans-serif;
-margin-top:3px;
-=======
     color: black;
     font-family: Calibri;
     font-size: 12px;
     opacity: 0.95;
     position: absolute;
     /*top: 7px;*/
-    left: 14%;
+    left: 300px;
     z-index: 10;
     padding: 5px;
     height: 20px;
@@ -127,7 +82,7 @@ margin-top:3px;
     opacity: 0.95;
     position: absolute;
     /*top: 7px;*/
-    left: 18%;
+    left: 375px;
     z-index: 10;
     padding: 5px;
     height: 20px;
@@ -142,13 +97,12 @@ margin-top:3px;
     opacity: 0.95;
     position: absolute;
     /*top: 7px;*/
-    left: 22.5%;
+    left: 450px;
     z-index: 10;
     padding: 5px;
     height: 20px;
     font: 82.5% "Trebuchet MS", sans-serif;
     background: #ff0000;
->>>>>>> origin/master
 }
 
 #radio {
