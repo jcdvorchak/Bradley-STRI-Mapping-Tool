@@ -67,11 +67,12 @@ font-size: 12px;
 opacity: 0.95;
 position: absolute;
 /*top: 7px;*/
-left: 14%;
+left: 300px;
 z-index: 10;
 padding: 5px;
 height: 20px;
 font: 82.5% "Trebuchet MS", sans-serif;
+margin-top:3px;
 }
 
 #species {
@@ -81,11 +82,12 @@ font-size: 12px;
 opacity: 0.95;
 position: absolute;
 /*top: 7px;*/
-left: 18%;
+left: 375px;
 z-index: 10;
 padding: 5px;
 height: 20px;
 font: 82.5% "Trebuchet MS", sans-serif;
+margin-top:3px;
 }
 
 #submit {
@@ -95,11 +97,12 @@ font-size: 12px;
 opacity: 0.95;
 position: absolute;
 /*top: 7px;*/
-left: 22.5%;
+left: 450px;
 z-index: 10;
 padding: 5px;
 height: 20px;
 font: 82.5% "Trebuchet MS", sans-serif;
+margin-top:3px;
 }
 
 #radio {
@@ -120,7 +123,7 @@ font: 82.5% "Trebuchet MS", sans-serif;
 	opacity:0.9;
 	position: absolute;
 	bottom: 0px;
-	right: 15%;
+	right: 3%;
 	z-index: 10;
     padding: 0 0;
     font: 82.5% "Trebuchet MS", sans-serif;
