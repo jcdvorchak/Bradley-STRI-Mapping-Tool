@@ -129,6 +129,7 @@ span.ui-icon {
 	z-index: 10;
     padding: 0 0;
     font: 82.5% "Trebuchet MS", sans-serif;
+    background: #ff0000;
 }
 
 .ui-autocomplete {
@@ -167,6 +168,7 @@ span.ui-icon {
     top: 0;
     right: 0;
     font: 82.5% "Trebuchet MS", sans-serif;
+    background: #ff0000;
 }
 
 #welcome {
