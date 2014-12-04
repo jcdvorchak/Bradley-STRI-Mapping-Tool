@@ -1,12 +1,7 @@
-/*
-*  Author: Ouya Zhang
-*  Date: Mar.06, 2014
-*  Content: stylesheet for homepage
-*/
 html, body, #map-canvas {
-	height: 100%;
-	margin: 0px;
-	padding: 0px
+    height: 100%;
+    margin: 0px;
+    padding: 0px
 }
 
 li {
@@ -16,6 +11,11 @@ li {
     cursor: pointer;
     float: left;
     list-style: none;
+}
+
+button {
+    margin-top: 5px;
+    margin-right: 5px;
 }
 
 span.ui-icon {
@@ -46,73 +46,38 @@ span.ui-icon {
 }
 
 #search_container {
-    color: black;
-    font-family: Calibri;
-    font-size: 12px;
-	opacity:0.95;
     position: absolute;
-    /*top: 5px;
-    /*left: 3%;*/
     z-index: 10;
-    padding: 2px 0;
-    height: 30px;
-    font: 82.5% "Trebuchet MS", sans-serif;
-    background: #ff0000;
+    padding-left: 2px;
 }
 
 #genus {
-    color: black;
-    font-family: Calibri;
-    font-size: 12px;
-    opacity: 0.95;
     position: absolute;
-    /*top: 7px;*/
-    left: 300px;
+    left: 250px;
     z-index: 10;
-    padding: 5px;
-    height: 20px;
-    font: 82.5% "Trebuchet MS", sans-serif;
-    background: #ff0000;
+    top: 0px;
 }
 
 #species {
-    color: black;
-    font-family: Calibri;
-    font-size: 12px;
-    opacity: 0.95;
     position: absolute;
-    /*top: 7px;*/
-    left: 375px;
+    left: 335px;
     z-index: 10;
-    padding: 5px;
-    height: 20px;
-    font: 82.5% "Trebuchet MS", sans-serif;
-    background: #ff0000;
+    top: 0px;
 }
 
 #submit {
-    color: black;
-    font-family: Calibri;
-    font-size: 12px;
-    opacity: 0.95;
     position: absolute;
-    /*top: 7px;*/
-    left: 450px;
+    left: 430px;
     z-index: 10;
-    padding: 5px;
-    height: 20px;
-    font: 82.5% "Trebuchet MS", sans-serif;
-    background: #ff0000;
+    top: 0px;
 }
 
 #radio {
     position: absolute;
-    top:35px;
-    /*left:50px;*/
-    z-index:10;
-    padding:5px;
-    height:20px;
-    background: #ff0000;
+    top: 35px;
+    z-index: 10;
+    padding-left: 2px;
+    padding-top: 5px;
 }
 
 #search_bar {
@@ -121,14 +86,11 @@ span.ui-icon {
 }
 
 #map_selector {
-	opacity:0.9;
-	position: absolute;
-	bottom: 0px;
-	right: 3%;
-	z-index: 10;
+    position: absolute;
+    bottom: 0px;
+    right: 3%;
+    z-index: 10;
     padding: 0 0;
-    font: 82.5% "Trebuchet MS", sans-serif;
-    background: #ff0000;
 }
 
 .ui-autocomplete {
@@ -149,13 +111,10 @@ span.ui-icon {
 }
 
 #layer_control_container {
-    font: 62.5% "Trebuchet MS", sans-serif;
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 0px;
+    right: 0px;
     z-index: 10;
-    height: 30px;
-    font: 82.5% "Trebuchet MS", sans-serif;
 }
 
 #layer_control {
@@ -211,9 +170,10 @@ span.ui-icon {
     top: 0;
 }
 
-
-
-
-
-
-
+#QueryListing {
+    width: 220px;
+    height: 80%;
+    position: absolute;
+    left: 1%;
+    top: 80px;
+}
