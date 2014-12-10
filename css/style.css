@@ -180,3 +180,8 @@ span.ui-icon {
 #listTable{
      height: 500px;
 }
+
+#hide {
+    position: absolute;
+    bottom: -25px;
+}

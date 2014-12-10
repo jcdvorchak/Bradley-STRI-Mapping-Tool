@@ -20,54 +20,15 @@
     
     <body>
 
-        <!--<div id="search_container" class="ui-widget-header ui-corner-all">
-            <div id="search_title" class="search_position">
-                <li></li>
-                <li></li>
-                <div class="search_position">Search</div>
-                <li></li>
-                <li></li>
-            </div>
-            <div id="search_bar" class="search_position">
-                <div class="search_position">
-                    <div class="search_box_div">
-                        <input type="text" value="Enter species name here" id="search_box" />
-                    </div>
-                </div>
-                <li></li>
-                <li></li>
-                <!--<div class="search_position_2">
-                    <li class="ui-state-default ui-corner-all"  title="click to search" id="search_button">
-                        <span class="ui-icon ui-icon-search"></span>
-                    </li>
-                    <li class="ui-state-default ui-corner-all" title="clear results" id="clear_search">
-                        <span class="ui-icon ui-icon-trash"></span>
-                    </li>
-                    <li id="hide_search_bar" class="ui-state-default ui-corner-all" title="hide">
-                        <span class="ui-icon ui-icon-triangle-1-w"></span>
-                    </li>
-                </div>-->
-            <!--</div>
-            <button type="button" onclick="addToList('MyTree')">Add</button>
-        </div>
-
-        <div id="genus"><select><option>Genus</option></select></div>
-        <div id="species"><select><option>Species</option></select></div>
-        <div id="submit"><button type="button">Add</button></div>
-
-        <form id="radio">
-            <input type="radio" name="datatype" checked>STRI<input type="radio" name="datatype">BIEN
-        </form>-->
-
         <form class="form-inline" role="form" id="search_container">
             <div class="form-group">
                 <div class="input-group">
                     <input type="text" class="form-control" id="search_box" placeholder="Enter species name">
                 </div>
-                <button type="submit" class="btn btn-danger" onclick="addToList('MyTree')">Add</button>
+                <button type="button" class="btn btn-primary" onclick="addToList('MyTree')">Add</button>
             </div>
             <div class="dropdown" id="genus">
-                <button class="btn btn-danger dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Genus
+                <button class="btn btn-primary dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Genus
                 <span class="caret"></span></button>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
                   <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Cassia</a></li>
@@ -75,77 +36,49 @@
                 </ul>
             </div>
             <div class="dropdown" id="species">
-                <button class="btn btn-danger dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Species
+                <button class="btn btn-primary dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Species
                 <span class="caret"></span></button>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
                   <li role="presentation"><a role="menuitem" tabindex="-1" href="#">grandis</a></li>
                   <li role="presentation"><a role="menuitem" tabindex="-1" href="#">guajava</a></li>
                 </ul>
             </div>
-            <button type="button" class="btn btn-danger" data-toggle="button" aria-pressed="false" autocomplete="off" id="submit">
+            <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" id="submit">
               Add
             </button>
             <div class="btn-group" data-toggle="buttons" id="radio">
-                <label class="btn btn-danger active">
+                <label class="btn btn-primary active">
                     <input type="radio" name="options" id="option1" autocomplete="off" checked>STRI
                 </label>
-                <label class="btn btn-danger">
+                <label class="btn btn-primary">
                     <input type="radio" name="options" id="option2" autocomplete="off">BIEN
                 </label>
             </div>
         </form>
-        
-        <!--OLD CHECKBOXES
-        <div id="layer_control_container">
-            <div id="layer_control">
-                <div id="layer_control_button" class="ui-widget-header ui-corner-all">
-                    <input type="checkbox" value="1" id="layer1"/>Rivers<br />
-                    <input type="checkbox" value="2" id="layer2" />Administrative Areas&nbsp&nbsp&nbsp<br />
-                    <input type="checkbox" value="3" id="layer3" />Protected Areas<br />
-                    <li class="ui-state-default ui-corner-all ui-state-hover" id="hide_layercontrol">
-                        <span class="ui-icon ui-icon-triangle-1-ne"></span>
-                    </li>
-                </div>
-            </div>
-        </div>-->
 
         <div class="btn-group" data-toggle="buttons" id="layer_control_container">
-            <label class="btn btn-danger active">
+            <label class="btn btn-primary active">
                 <input type="checkbox" autocomplete="off" checked>Rivers
             </label>
-            <label class="btn btn-danger">
+            <label class="btn btn-primary">
                 <input type="checkbox" autocomplete="off">Administrative Areas
             </label>
-            <label class="btn btn-danger">
+            <label class="btn btn-primary">
                 <input type="checkbox" autocomplete="off">Protected Areas
             </label>
         </div>
 
-        <!--OLD RADIO MAP TYPE SELECTION BUTTONS
-        <form>
-            <div id="map_selector">
-                <input type="radio" id="ROADMAP" name="radio" checked="checked" />
-                    <label for="ROADMAP">Roadmap</label>
-                <input type="radio" id="SATELLITE" name="radio" />
-                    <label for="SATELLITE">Satellite</label>
-                <input type="radio" id="HYBRID" name="radio" />
-                    <label for="HYBRID">Hybrid</label>
-                <input type="radio" id="TERRAIN" name="radio" />
-                    <label for="TERRAIN">Terrain</label>
-            </div>
-        </form>-->
-
         <div class="btn-group" data-toggle="buttons" id="map_selector">
-            <label class="btn btn-danger active">
+            <label class="btn btn-primary active">
                 <input type="radio" name="options" id="option1" autocomplete="off" checked>Roadmap
             </label>
-            <label class="btn btn-danger">
+            <label class="btn btn-primary">
                 <input type="radio" name="options" id="option2" autocomplete="off">Satellite
             </label>
-            <label class="btn btn-danger">
+            <label class="btn btn-primary">
                 <input type="radio" name="options" id="option2" autocomplete="off">Hybrid
             </label>
-            <label class="btn btn-danger">
+            <label class="btn btn-primary">
                 <input type="radio" name="options" id="option2" autocomplete="off">Terrain
             </label>
         </div>
@@ -156,11 +89,11 @@
         <div id="QueryListing">
             <!--For Testing purposes only. There will be JS in the search that will call addToList()-->
             <table id="listTable"></table>
-            <button id="hide"style="position:absolute; bottom:-25px;">Hide/Unhide</button>
+            <button type="button" class="btn btn-primary" id="hide">Hide/Unhide</button>
             <script>
-            $( "#hide" ).click(function() {
-             $( "#listTable" ).slideToggle( "fast" );
-            });
+                $("#hide").click(function() {
+                    $("#listTable").slideToggle("fast");
+                });
             </script>
         </div>
 

@@ -4,7 +4,7 @@ function addToList(TreeText) {
 	var textCell = row.insertCell(0);
 	var btnCell = row.insertCell(1);
 	textCell.innerHTML = "<p>TreeText</p>";
-	btnCell.innerHTML = "<button type='button' class='btn btn-danger' data-toggle='button' aria-pressed='false' autocomplete='off' onclick='delRow(this)'>Delete</button>";//Delete Button
+	btnCell.innerHTML = "<button type='button' class='btn btn-primary' data-toggle='button' aria-pressed='false' autocomplete='off' onclick='delRow(this)'>Delete</button>";//Delete Button
 }
 
 function delRow(o) {
