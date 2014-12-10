@@ -13,6 +13,7 @@
         <!--BOOTSTRAP STUFF-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
         <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.css" />
     
     </head>
@@ -152,9 +153,15 @@
         
         <div id="map-canvas"></div>
 
-        <div class="jumbotron" id="QueryListing">
+        <div id="QueryListing">
             <!--For Testing purposes only. There will be JS in the search that will call addToList()-->
             <table id="listTable"></table>
+            <button id="hide"style="position:absolute; bottom:-25px;">Hide/Unhide</button>
+            <script>
+            $( "#hide" ).click(function() {
+             $( "#listTable" ).slideToggle( "fast" );
+            });
+            </script>
         </div>
 
     
