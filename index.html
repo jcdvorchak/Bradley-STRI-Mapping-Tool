@@ -86,16 +86,26 @@
         
         <div id="map-canvas"></div>
 
-        <div id="QueryListing">
+        <div id ="QueryListing">
+            <div id="QueryTable" style="overflow-y: auto; height:500px;">
             <!--For Testing purposes only. There will be JS in the search that will call addToList()-->
-            <table id="listTable"></table>
+            <table id="listTable" style="tr{height: 15px;}"></table>
+            <script>
+                document.getElementById("listTable").deleteRow(0);
+            </script>
+            </div>
+
+            <div id="HideButton">
             <button type="button" class="btn btn-primary" id="hide">Hide/Unhide</button>
             <script>
                 $("#hide").click(function() {
-                    $("#listTable").slideToggle("fast");
+                    $("#QueryTable").slideToggle("fast");
                 });
             </script>
+            </div>
         </div>
+        
+
 
     
     </body>
