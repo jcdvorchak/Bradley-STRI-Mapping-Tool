@@ -177,11 +177,28 @@ span.ui-icon {
     top: 100px;
     background-color: #EEE;
 }
+
+#QueryTable {
+    overflow-y: auto;
+    height: 500px;
+}
+
 #listTable{
      height: 500px;
+     tr{height: 15px};
 }
 
 #hide {
     position: absolute;
-    bottom: -25px;
+    /*bottom: -25px;*/
+    left: 50px;
+}
+
+#ToggleUI {
+    position: absolute; 
+    width: 300px; 
+    bottom: 0px;
+    right: 25%;
+    left: 50%;
+    margin-left:-150px;
 }

@@ -1,12 +1,29 @@
+var map;
+
 function initialize() 
 {
 	var mapOptions = { 
 		center: new google.maps.LatLng(9.149639, -79.848202),
 		zoom: 8,
-		disableDefaultUI: true
+		disableDefaultUI: true,
+		zoomControl: true,
+		zoomControlOptions: {
+			position: google.maps.ControlPosition.RIGHT_CENTER,
+			style: google.maps.ZoomControlStyle.DEFAULT
+		},
+		panControl: true,
+		panControlOptions: {
+			position: google.maps.ControlPosition.RIGHT_CENTER
+		},
+		scaleControl: false,
+		mapTypeControl: true,
+		mapTypeControlOptions: {
+			position: google.maps.ControlPosition.RIGHT_BOTTOM,
+			style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+		}
 	};
 
-	var map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
+	map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
 
 	// to test using variables
 	var whereClause;
