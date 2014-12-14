@@ -174,9 +174,14 @@ span.ui-icon {
     width: 220px;
     position: absolute;
     left: 1%;
-    top: 80px;
+    top: 100px;
     background-color: #EEE;
 }
 #listTable{
      height: 500px;
+}
+
+#hide {
+    position: absolute;
+    bottom: -25px;
 }
