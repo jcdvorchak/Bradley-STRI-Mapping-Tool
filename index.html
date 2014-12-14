@@ -90,19 +90,20 @@
         <div id ="QueryListing">
             <div id="QueryTable">
             <!--For Testing purposes only. There will be JS in the search that will call addToList()-->
-            <table id="listTable"></table>
-            <script>
-                document.getElementById("listTable").deleteRow(0);
-            </script>
+            <table id="listTable" style="height: 1px"></table>
             </div>
 
             <div id="HideButton">
             <button type="button" class="btn btn-primary" id="hide">Hide/Unhide</button>
+            
             <script>
                 $("#hide").click(function() {
                     $("#QueryTable").slideToggle("fast");
                 });
             </script>
+            </div>
+            <div id="PlotButton">
+            <button type="button" class="btn btn-primary" id="plot">Plot All</button>
             </div>
         </div>
         <button type="button" class="btn btn-success" id="ToggleUI" onclick="toggleAll()">Toggle UI</button>

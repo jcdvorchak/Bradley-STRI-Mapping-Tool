@@ -23,6 +23,10 @@ span.ui-icon {
     margin: 0 4px;
 }
 
+#listTable td {
+    padding: 5px;
+}
+
 .ui-widget-header {
     display: inline-block;
 }
@@ -190,8 +194,13 @@ span.ui-icon {
 
 #hide {
     position: absolute;
-    /*bottom: -25px;*/
-    left: 50px;
+    bottom: -35px;
+}
+
+#plot {
+    position: absolute;
+    bottom: -35px;
+    left:100px;
 }
 
 #ToggleUI {
