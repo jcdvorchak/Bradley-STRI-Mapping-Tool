@@ -1,4 +1,6 @@
 function addToList(TreeText) {
+	var activeTab = document.getElementsByClassName('tab-pane active'); //doesn't do anything yet
+
 	var table = document.getElementById("listTable");
 	var row = table.insertRow(0);
 	var textCell = row.insertCell(0);

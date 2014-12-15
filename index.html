@@ -91,32 +91,49 @@
         <div id ="QueryListing">
             <div id="QueryTable">
             <!--For Testing purposes only. There will be JS in the search that will call addToList()-->
-                <table id="listTable" style="height: 1px">
+                
 
-                <div class="tabpanel">
+                <div class="tabbable">
 
-                    <ul class="nav nav-tabs" role="tablist" id="countriesTab">
-                        <li role="presentation" class="active" id="panama"><a href="#panama" data-toggle="tab">Panama</a></li>   
-                        <li role="presentation" id="colombia"><a href="#colombia" data-toggle="tab">Colombia</a></li>
+                    <ul class="nav nav-tabs" id="countryTab">
+                        <li class="active"><a class="tab-control" href="#panama" data-toggle="tab">Panama</a></li>   
+                        <li><a class="tab-control" href="#colombia" data-toggle="tab">Colombia</a></li>
                     </ul>
 
                     <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane fade in active" id="panama">sup</div>
-                        <div role="tabpanel" class="tab-pane fade" id="columbia">hi</div>
+                        <div class="tab-pane active" id="panama">panama
+                            <table id="listTable" style="height: 1px"></table>
+                        </div>
+                        <div class="tab-pane" id="colombia">colombia
+                            <table id="listTable" style="height: 1px"></table>
+                        </div>
                     </div>
 
                     <script>
-                        $(function() {
-                            $('.nav-tabs a').on('click', function (e) {
-                                e.preventDefault();
-                                $(this).tab('show');
-                            });
+                        $('#countryTab').each(function() { //Find list of tabs
+                            var $this = $(this); //Store this list
+                            var $tab = $this.find('li.active'); //Get the active list item
+                            var $link = $tab.find('a'); //Get link from active tab
+                            var $panel = $($link.attr('href')); //Get active panel
+
+                            $this.on('click', '.tab-control', function(e) { //When click on a tab
+                                e.preventDefault(); //Prevent link behavior
+                                var $link = $(this); //Store the current link
+                                var id = this.hash; //Get href of clicked tab
+
+                                if(id && !$link.is('active')) { //If not currently active
+                                    $panel.removeClass('active'); //Make panel inactive
+                                    $tab.removeClass('active'); //Make tab inactive
+
+                                    $panel = $(id).addClass('active'); //Make new panel active
+                                    $tab = $link.parent().addClass('active'); //Make new tab active
+                                }
+                            })
                         })
                     </script>
 
                 </div>
 
-                </table>
             </div>
 
             <div id="HideButton">
