@@ -90,22 +90,48 @@
         <div id ="QueryListing">
             <div id="QueryTable">
             <!--For Testing purposes only. There will be JS in the search that will call addToList()-->
-            <table id="listTable" style="height: 1px"></table>
+                <table id="listTable" style="height: 1px">
+
+                <div class="tabpanel">
+
+                    <ul class="nav nav-tabs" role="tablist" id="countriesTab">
+                        <li role="presentation" class="active" id="panama"><a href="#panama" data-toggle="tab">Panama</a></li>   
+                        <li role="presentation" id="colombia"><a href="#colombia" data-toggle="tab">Colombia</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade in active" id="panama">sup</div>
+                        <div role="tabpanel" class="tab-pane fade" id="columbia">hi</div>
+                    </div>
+
+                    <script>
+                        $(function() {
+                            $('.nav-tabs a').on('click', function (e) {
+                                e.preventDefault();
+                                $(this).tab('show');
+                            });
+                        })
+                    </script>
+
+                </div>
+
+                </table>
             </div>
 
             <div id="HideButton">
-            <button type="button" class="btn btn-primary" id="hide">Hide/Unhide</button>
-            
-            <script>
-                $("#hide").click(function() {
-                    $("#QueryTable").slideToggle("fast");
-                });
-            </script>
+                <button type="button" class="btn btn-primary" id="hide">Hide/Unhide</button>
+                
+                <script>
+                    $("#hide").click(function() {
+                        $("#QueryTable").slideToggle("fast");
+                    });
+                </script>
             </div>
             <div id="PlotButton">
-            <button type="button" class="btn btn-primary" id="plot">Plot All</button>
+                <button type="button" class="btn btn-primary" id="plot">Plot All</button>
             </div>
         </div>
+
         <button type="button" class="btn btn-success" id="ToggleUI" onclick="toggleAll()">Toggle UI</button>
     
     </body>
