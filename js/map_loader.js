@@ -1,4 +1,5 @@
 var map;
+var layer = new google.maps.FusionTablesLayer();
 
 function initialize() 
 {
@@ -24,21 +25,6 @@ function initialize()
 	};
 
 	map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
-
-	// to test using variables
-	var whereClause;
-	var searchString = 'Aa'; // this will need to be what they enter
-	whereClause = "'Genus' = '" + searchString + "'";
-
-	var layer = new google.maps.FusionTablesLayer({
-	    query: {
-	      select: 'Latitude',
-	      from: '1EtC8wMoso-d59wgiTgXaGFTovW2-wcgdb25jNV8p', // new table
-	      // from: '1BwwBtlnE-JoVHbGXiBe4FJqNn1_or59a7aV4osk', // old table
-	      where: whereClause
-	    }
-	});
-	layer.setMap(map);
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);

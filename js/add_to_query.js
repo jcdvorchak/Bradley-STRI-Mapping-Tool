@@ -3,7 +3,8 @@ function addToList(TreeText) {
 	var row = table.insertRow(0);
 	var textCell = row.insertCell(0);
 	var btnCell = row.insertCell(1);
-	textCell.innerHTML = "<p>TreeText</p>";
+	var treeText = document.getElementById('search_box').value;
+	textCell.innerHTML = treeText;
 	btnCell.innerHTML = "<button type='button' class='btn btn-primary' data-toggle='button' aria-pressed='false' autocomplete='off' onclick='delRow(this)'>Delete</button>";//Delete Button
 }
 
