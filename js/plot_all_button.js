@@ -1,5 +1,13 @@
 function plotAll() {
-	var table = document.getElementById("listTable");
+	var table;
+
+	var activeTab = document.getElementsByClassName('tab-pane active')[0];
+	if(activeTab.id == "panama") {
+		table = document.getElementById("listTablePanama");
+	}
+	else if(activeTab.id == "colombia") {
+		table = document.getElementById("listTableColombia");
+	}
 
 	var search_key = table.rows[0].cells[0].innerHTML; // text in the first cell
 
