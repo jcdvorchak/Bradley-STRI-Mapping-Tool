@@ -15,7 +15,7 @@
         <!--BOOTSTRAP STUFF-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
-        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
         <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.css" />
     
     </head>
@@ -27,10 +27,10 @@
                 <div class="input-group">
                     <input type="text" class="form-control" id="search_box" placeholder="Enter species name">
                 </div>
-                <button type="button" class="btn btn-primary" onclick="addToList('MyTree')">Add</button>
+                <button type="button" class="btn btn-success" onclick="addToList('MyTree')">Add</button>
             </div>
             <div class="dropdown" id="genus">
-                <button class="btn btn-primary dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Genus
+                <button class="btn btn-success dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Genus
                 <span class="caret"></span></button>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
                   <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Cassia</a></li>
@@ -38,34 +38,34 @@
                 </ul>
             </div>
             <div class="dropdown" id="species">
-                <button class="btn btn-primary dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Species
+                <button class="btn btn-success dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Species
                 <span class="caret"></span></button>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
                   <li role="presentation"><a role="menuitem" tabindex="-1" href="#">grandis</a></li>
                   <li role="presentation"><a role="menuitem" tabindex="-1" href="#">guajava</a></li>
                 </ul>
             </div>
-            <button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" id="submit">
+            <button type="button" class="btn btn-success" data-toggle="button" aria-pressed="false" autocomplete="off" id="submit">
               Add
             </button>
             <div class="btn-group" data-toggle="buttons" id="radio">
-                <label class="btn btn-primary active">
+                <label class="btn btn-success active">
                     <input type="radio" name="options" id="option1" autocomplete="off" checked>STRI
                 </label>
-                <label class="btn btn-primary">
+                <label class="btn btn-success">
                     <input type="radio" name="options" id="option2" autocomplete="off">BIEN
                 </label>
             </div>
         </form>
 
         <div class="btn-group" data-toggle="buttons" id="layer_control_container">
-            <label class="btn btn-primary active">
+            <label class="btn btn-success active">
                 <input type="checkbox" autocomplete="off" checked>Rivers
             </label>
-            <label class="btn btn-primary">
+            <label class="btn btn-success">
                 <input type="checkbox" autocomplete="off">Administrative Areas
             </label>
-            <label class="btn btn-primary">
+            <label class="btn btn-success">
                 <input type="checkbox" autocomplete="off">Protected Areas
             </label>
         </div>
@@ -101,11 +101,11 @@
                     </ul>
 
                     <div class="tab-content">
-                        <div class="tab-pane active" id="panama">panama
-                            <table id="listTable" style="height: 1px"></table>
+                        <div class="tab-pane active" id="panama">
+                            <table id="listTablePanama" style="height: 1px"></table>
                         </div>
-                        <div class="tab-pane" id="colombia">colombia
-                            <table id="listTable" style="height: 1px"></table>
+                        <div class="tab-pane" id="colombia">
+                            <table id="listTableColombia" style="height: 1px"></table>
                         </div>
                     </div>
 
@@ -137,7 +137,7 @@
             </div>
 
             <div id="HideButton">
-                <button type="button" class="btn btn-primary" id="hide">Hide/Unhide</button>
+                <button type="button" class="btn btn-success" id="hide">Hide/Unhide</button>
                 
                 <script>
                     $("#hide").click(function() {
@@ -146,7 +146,7 @@
                 </script>
             </div>
             <div id="PlotButton">
-                <button type="button" class="btn btn-primary" id="plot" onclick="plotAll()">Plot All</button>
+                <button type="button" class="btn btn-success" id="plot" onclick="plotAll()">Plot All</button>
             </div>
         </div>
 
