@@ -9,19 +9,23 @@ function plotAll() {
 		table = document.getElementById("listTableColombia");
 	}
 
-	var search_key = table.rows[0].cells[0].innerHTML; // text in the first cell
+	if (table.rows.length>0) {
+		var search_key = table.rows[0].cells[0].innerHTML; // text in the first cell
 
-	var whereClause = "'Genus' = '" + search_key + "'";
+		var whereClause = "'Genus' = '" + search_key + "'";
 
-	layer.setOptions({ // set the options of the already created layer (in map_loader)
-		query: {
-	      select: 'Latitude',
-	      from: '1EtC8wMoso-d59wgiTgXaGFTovW2-wcgdb25jNV8p', // new table
-	      where: whereClause
-	    }
-	});
-	
-    layer.setMap(map);
+		layer.setOptions({ // set the options of the already created layer (in map_loader)
+			query: {
+		      select: 'Latitude',
+		      from: '1EtC8wMoso-d59wgiTgXaGFTovW2-wcgdb25jNV8p', // new table
+		      where: whereClause
+		    }
+		});
+		
+	    layer.setMap(map);
+	} else {
+		layer.setMap(null);
+	}
 }
 
 

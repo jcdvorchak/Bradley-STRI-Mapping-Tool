@@ -57,21 +57,21 @@ span.ui-icon {
 
 #genus {
     position: absolute;
-    left: 250px;
+    left: 260px;
     z-index: 10;
     top: 0px;
 }
 
 #species {
     position: absolute;
-    left: 335px;
+    left: 340px;
     z-index: 10;
     top: 0px;
 }
 
 #submit {
     position: absolute;
-    left: 430px;
+    left: 433px;
     z-index: 10;
     top: 0px;
 }

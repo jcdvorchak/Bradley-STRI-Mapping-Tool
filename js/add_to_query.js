@@ -20,4 +20,5 @@ function addToList(TreeText) {
 function delRow(o) {
 	var p = o.parentNode.parentNode;
 	p.parentNode.removeChild(p);
+	plotAll();
 }
