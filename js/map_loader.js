@@ -21,24 +21,11 @@ function initialize()
 		mapTypeControlOptions: {
 			position: google.maps.ControlPosition.RIGHT_BOTTOM,
 			style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
-		}
+		},
+		suppressInfoWindows:true
 	};
 
 	map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
-
-	// rlayer = new google.maps.FusionTablesLayer({
- //      map: map,
- //      heatmap: { enabled: false },
- //      query: {
- //        select: "col2",
- //        from: "1vCvnicNK4hdsgq5mP4CKuoeYQOouCOd0_VwH93Mx",
- //        where: ""
- //      },
- //      options: {
- //        styleId: 2,
- //        templateId: 2
- //      }
- //    });
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);

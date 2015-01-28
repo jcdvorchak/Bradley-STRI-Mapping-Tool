@@ -15,12 +15,26 @@ function plotAll() {
 		var whereClause = "'Genus' = '" + search_key + "'";
 
 		layer.setOptions({ // set the options of the already created layer (in map_loader)
+			map: map,
 			query: {
 		      select: 'Latitude',
 		      from: '1EtC8wMoso-d59wgiTgXaGFTovW2-wcgdb25jNV8p', // new table
 		      where: whereClause
 		    }
 		});
+
+		layer.disableMapTips(); // wipe previous map tips
+
+		layer.enableMapTips({
+		    select: "'Latin','CountryStd'", // list of columns for the map tip
+		    from: '1EtC8wMoso-d59wgiTgXaGFTovW2-wcgdb25jNV8p', // fusion table name
+		    where: whereClause, // filter on more than just geometryColumn
+		    geometryColumn: 'Latitude', // geometry column names
+		    suppressMapTips: false, // optional, whether to show map tips. default false
+		    delay: 200, // milliseconds mouse pause before send a server query. default 300.
+		    tolerance: 8, // tolerance in pixel around mouse. default is 6.
+		    googleApiKey: "AIzaSyCnxStZYPcxJNBjAa7V96g__7lpv80jIMY" // generated with google developer console
+	  	});
 		
 	    layer.setMap(map);
 	} else {
@@ -30,7 +44,7 @@ function plotAll() {
 
 
 
-// // FOR MORE THAN ONE GENUS NAME (creating a longer where clause)
+// FOR MORE THAN ONE GENUS NAME (creating a longer where clause)
 
 // function plotAll() {
 // 	var table = document.getElementById("listTable");
