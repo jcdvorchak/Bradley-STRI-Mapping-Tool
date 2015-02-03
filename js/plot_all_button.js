@@ -4,15 +4,28 @@ function plotAll() {
 	var activeTab = document.getElementsByClassName('tab-pane active')[0];
 	if(activeTab.id == "panama") {
 		table = document.getElementById("listTablePanama");
-	}
-	else if(activeTab.id == "colombia") {
+	} else if(activeTab.id == "colombia") {
 		table = document.getElementById("listTableColombia");
 	}
 
 	if (table.rows.length>0) {
-		var search_key = table.rows[0].cells[0].innerHTML; // text in the first cell
+		var search_keys = new Array();
+		for (i=0; i<table.rows.length;i++) {
+			var search_key = table.rows[i].cells[0].innerHTML; // row value in the query table
+			search_keys.push(search_key.trim());
+		}
 
-		var whereClause = "'Genus' = '" + search_key + "'";
+		// get all genus in the list
+		// var whereClause = "Genus IN ('Aa','Merremia')";
+		var whereClause = "Genus IN (";
+		for (i=0;i<search_keys.length;i++) {
+			whereClause += "'" + search_keys[i] + "'"; 
+			if (i<search_keys.length-1) {
+				whereClause += ",";
+			}
+		}
+		whereClause += ")";
+		console.log(whereClause); // print to chrome console
 
 		layer.setOptions({ // set the options of the already created layer (in map_loader)
 			map: map,
@@ -24,7 +37,6 @@ function plotAll() {
 		});
 
 		layer.disableMapTips(); // wipe previous map tips
-
 		layer.enableMapTips({
 		    select: "'Latin','CountryStd'", // list of columns for the map tip
 		    from: '1EtC8wMoso-d59wgiTgXaGFTovW2-wcgdb25jNV8p', // fusion table name
@@ -34,41 +46,10 @@ function plotAll() {
 		    delay: 200, // milliseconds mouse pause before send a server query. default 300.
 		    tolerance: 8, // tolerance in pixel around mouse. default is 6.
 		    googleApiKey: "AIzaSyCnxStZYPcxJNBjAa7V96g__7lpv80jIMY" // generated with google developer console
-	  	});
-		
-	    layer.setMap(map);
+	   	});
+
+		layer.setMap(map);
 	} else {
 		layer.setMap(null);
 	}
 }
-
-
-
-// FOR MORE THAN ONE GENUS NAME (creating a longer where clause)
-
-// function plotAll() {
-// 	var table = document.getElementById("listTable");
-// 	var search_keys = new Array();
-
-// 	for (i=0; i<table.rows.length;i++) {
-// 		var search_key = table.rows[i].cells[0].innerHTML; // row value in the query table
-// 		search_keys.push(search_key);
-// 	}
-
-// 	var whereClause = "'Genus' = " + "'" + search_keys[0] + "'"; // add the first genus
-// 	if (search_keys.length>1) { // if there are more than one, add them with correct syntax
-// 		for (i=1;i<search_keys.length;i++) {
-// 			whereClause = whereClause + " OR 'Genus' = '" + search_keys[i] + "'";
-// 		}
-// 	}
-
-// 	var layer = new google.maps.FusionTablesLayer({
-// 	    query: {
-// 	      select: 'Latitude',
-// 	      from: '1EtC8wMoso-d59wgiTgXaGFTovW2-wcgdb25jNV8p', // new table
-// 	      // from: '1BwwBtlnE-JoVHbGXiBe4FJqNn1_or59a7aV4osk', // old table
-// 	      where: whereClause
-// 	    }
-// 	});
-// 	layer.setMap(map);
-// }
