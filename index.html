@@ -12,6 +12,7 @@
         <script type="text/javascript" src="js/add_to_query.js"></script>
         <script type="text/javascript" src="js/UIToggle.js"></script>
         <script type="text/javascript" src="js/plot_all_button.js"></script>
+        <script type="text/javascript" src="js/toggle_layers.js"></script>
         <link rel="stylesheet" type="text/css" href="css/style.css" />
 
         <!--BOOTSTRAP STUFF-->
@@ -61,14 +62,14 @@
         </form>
 
         <div class="btn-group" data-toggle="buttons" id="layer_control_container">
-            <label class="btn btn-success active">
-                <input type="checkbox" autocomplete="off" checked>Rivers
+            <label class="btn btn-success">
+                <input type="checkbox" autocomplete="off" id="layer1" onchange="riverLayer()">Rivers
             </label>
             <label class="btn btn-success">
-                <input type="checkbox" autocomplete="off">Administrative Areas
+                <input type="checkbox" autocomplete="off" id="layer2" onchange="adminLayer()">Administrative Areas
             </label>
             <label class="btn btn-success">
-                <input type="checkbox" autocomplete="off">Protected Areas
+                <input type="checkbox" autocomplete="off" id="layer3" onchange="protectedLayer()">Protected Areas
             </label>
         </div>
 
