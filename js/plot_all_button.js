@@ -38,7 +38,7 @@ function plotAll() {
 
 		layer.disableMapTips(); // wipe previous map tips
 		layer.enableMapTips({
-		    select: "'Latin','CountryStd'", // list of columns for the map tip
+		    select: "'Latin','Family','Country','Province','Latitude','Longitude'", // list of columns for the map tip
 		    from: '1EtC8wMoso-d59wgiTgXaGFTovW2-wcgdb25jNV8p', // fusion table name
 		    where: whereClause, // filter on more than just geometryColumn
 		    geometryColumn: 'Latitude', // geometry column names

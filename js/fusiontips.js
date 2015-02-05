@@ -256,7 +256,8 @@
           row = {};
 
           for (i = 0; i < numCols; i++) {
-            html += data.rows[0][i] + "<br/>";
+            if(data.rows[0][i] != "NA")
+              html += data.columns[i] + ": " + data.rows[0][i] + "<br/>";
             var cell = {
               columnName: data.columns[i],
               value: data.rows[0][i]
