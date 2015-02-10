@@ -1,6 +1,6 @@
-function addToList(TreeText) {
-	var table;
+var table;
 
+function addToList(TreeText) {
 	var activeTab = document.getElementsByClassName('tab-pane active')[0];
 	if(activeTab.id == "panama") {
 		table = document.getElementById("listTablePanama");
