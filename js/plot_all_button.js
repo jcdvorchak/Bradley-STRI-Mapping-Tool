@@ -27,6 +27,7 @@ function plotAll() {
 		console.log(whereClause); // print to google chrome console for testing
 
 		layer.setOptions({ // set the options of the already created layer (in map_loader)
+			suppressInfoWindows:true,
 			map: map,
 			query: {
 		      select: 'Latitude',
