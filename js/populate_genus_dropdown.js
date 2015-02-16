@@ -1,20 +1,20 @@
-var ul = document.getElementById("genus");
-var li = document.createElement("li");
+// var ul = document.getElementById("genus");
+// var li = document.createElement("li");
 
 
 
-//loop or somethign through the table
-li.appendChild(document.createTextNode("Four"));
-ul.appendChild(li);
+// //loop or somethign through the table
+// li.appendChild(document.createTextNode("Four"));
+// ul.appendChild(li);
 
 
 
-function SearchAJAX() {
+function SearchAJA() {
 
 }
 
 
-SearchAJAX.prototype.searchAJAXHandler = function () {
+SearchAJA.prototype.searchAJAHandler = function () {
 //WILL PROBABLY USE SOMETHING LIKE THIS VVVVVVVVV
 
      $(function () { 
@@ -42,7 +42,7 @@ SearchAJAX.prototype.searchAJAXHandler = function () {
                     }
 
                       */
-                    $("#genus").menu({   //CHANGED TO GENUS, NEED TO CHANGE AUTOCOMPLETE TO SOMETHING THAT MAKES SENSE
+                    $("#genus").menu({   //CHANGED TO GENUS,
                         source: dataArray1
                     });
                     //}
@@ -53,6 +53,6 @@ SearchAJAX.prototype.searchAJAXHandler = function () {
 };
 
 (function() {
-  var search = new SearchAJAX();
-  search.searchAJAXHandler();
+  var search = new SearchAJA();
+  search.searchAJAHandler();
 })();
