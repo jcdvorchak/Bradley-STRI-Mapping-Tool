@@ -42,7 +42,7 @@ SearchAJA.prototype.searchAJAHandler = function () {
                     }
 
                       */
-                    $("#genus").menu({   //CHANGED TO GENUS,
+                    $("#genuslist").menu({   //CHANGED TO GENUS,
                         source: dataArray1
                     });
                     //}
