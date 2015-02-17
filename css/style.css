@@ -211,3 +211,12 @@ span.ui-icon {
     left: 50%;
     margin-left:-150px;
 }
+
+.dropdown-menu {
+    max-height: 225px;
+    overflow:auto;
+}
+
+.dropdown-menu li {
+    width: 100%;
+}
