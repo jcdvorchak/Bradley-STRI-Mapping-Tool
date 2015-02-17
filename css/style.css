@@ -214,7 +214,7 @@ span.ui-icon {
 
 .dropdown-menu {
     max-height: 225px;
-    overflow:auto;
+    overflow-x: hidden;
 }
 
 .dropdown-menu li {
