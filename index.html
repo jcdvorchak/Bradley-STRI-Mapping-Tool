@@ -3,7 +3,7 @@
 
     <head>
         <title>Map of Species</title>
-        
+
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 
         <script type="text/javascript" src="js/fusiontips.js"></script>
@@ -28,7 +28,7 @@
         <script type="text/javascript" src="js/searchbox_ajax_controller.js"></script>
         <script type="text/javascript" src="js/populate_genus_dropdown.js"></script>
     </head>
-    
+
     <body>
 
         <form class="form-inline" role="form" id="search_container">
@@ -50,13 +50,14 @@
                     function dosomething()
                     {
                         var ul = document.getElementById("genuslist");
-                        
+
                         ul.addEventListener('click', function(e)
                         {
-                            if(e.target.tagName === 'LI') 
-                            {
-                                alert(e.target.id);
-                            }
+                            // if(e.target.tagName === 'LI')
+                            // {
+                            //     alert(e.target.id);
+                            // }
+                            addDropDownToList(e.target.id);
                         });
                     }
 
@@ -111,18 +112,18 @@
             </label>
         </div>-->
 
-        
+
         <div id="map-canvas"></div>
 
         <div id ="QueryListing">
             <div id="QueryTable">
             <!--For Testing purposes only. There will be JS in the search that will call addToList()-->
-                
+
 
                 <div class="tabbable">
 
                     <ul class="nav nav-tabs" id="countryTab">
-                        <li class="active"><a class="tab-control" href="#panama" data-toggle="tab">Panama</a></li>   
+                        <li class="active"><a class="tab-control" href="#panama" data-toggle="tab">Panama</a></li>
                         <li><a class="tab-control" href="#colombia" data-toggle="tab">Colombia</a></li>
                     </ul>
 
@@ -164,7 +165,7 @@
 
             <div id="HideButton">
                 <button type="button" class="btn btn-success" id="hide">Hide/Unhide</button>
-                
+
                 <script>
                     $("#hide").click(function() {
                         $("#QueryTable").slideToggle("fast");
@@ -177,7 +178,7 @@
         </div>
 
         <button type="button" class="btn btn-success" id="ToggleUI" onclick="toggleAll()">Toggle UI</button>
-    
+
     </body>
 
 </html>

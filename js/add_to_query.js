@@ -17,6 +17,11 @@ function addToList(TreeText) {
 	btnCell.innerHTML = "<button type='button' class='btn btn-success' data-toggle='button' aria-pressed='false' autocomplete='off' onclick='delRow(this)'>Delete</button>";//Delete Button
 }
 
+function addDropDownToList(treeText) {
+	console.log(treeText);
+	document.getElementById('search_box').value = treeText;
+}
+
 function delRow(o) {
 	var p = o.parentNode.parentNode;
 	p.parentNode.removeChild(p);
