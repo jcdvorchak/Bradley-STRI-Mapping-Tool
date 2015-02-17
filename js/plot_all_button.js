@@ -46,8 +46,7 @@ function plotAll() {
 }
 
 function setMarkers(searchKeys) {
-	// TODO: add our own images as icons
-	var markerIcons = ["small_red","small_yellow","small_green","small_blue","small_purple","measle_brown","measle_grey","measle_white","measle_turquoise"];
+	var markerIcons = ["small_yellow","small_green","small_blue","small_purple","measle_turquoise"/*,"measle_brown","measle_grey","measle_white"*/];
 	var styles = new Array();
 	var rows = table.rows;
 
@@ -56,8 +55,7 @@ function setMarkers(searchKeys) {
 		styles.push({
 				where: "Genus = "+"'"+searchKeys[searchKeys.length-(i+1)]+"'", // color stays with query while adding more queries
 				markerOptions: {
-					iconName: markerIcons[i%9] // repeat colors if there are more than 9 searchKeys
-					// icon: "images/" + markerIcons[i%9] + ".png"
+					iconName: markerIcons[i] // if greater than 5 it will default to red
 				}
 		});
 
@@ -68,7 +66,11 @@ function setMarkers(searchKeys) {
 		}
 		var markerCell = row.insertCell(2);
 		console.log(markerCell.innerHTML);
-		markerCell.innerHTML = "<img src='images/"+markerIcons[i%9]+".png' alt='image not found'>";
+		if (i<5) { // only 5 options
+			markerCell.innerHTML = "<img src='images/"+markerIcons[i]+".png' alt='image not found'>";
+		} else { // default to small_red
+			markerCell.innerHTML = "<img src='images/small_red.png' alt='image not found'>";
+		}
 	}
 
 	layer.set('styles',styles);
