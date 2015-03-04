@@ -1,9 +1,7 @@
 <?php
- 
   include 'connect.php';
  
   $apikey = "AIzaSyCnxStZYPcxJNBjAa7V96g__7lpv80jIMY";
- 
 ?>
 
 <!DOCTYPE html>
@@ -31,19 +29,18 @@
         <?php
            $key = "Aa";
            $getpoints = "SELECT Latitude, Longitude 
-              FROM panama_bien 
-              WHERE Genus = 'Aa'";
+              FROM s_jdvorchak.bien_panama 
+              WHERE Genus = '$key'";
          
           if(!$result = $con->query($getpoints)){
             die('There was an error running the query 
                 [' . $con->error . ']');
           } else {
             while ($row = $result->fetch_assoc()) {
-              echo 'var myLatlng1 = new google.maps.LatLng('.$row[Latitude].', '.$row[Longitude].'); 
+              echo 'var myLatlng1 = new google.maps.LatLng('.$row['Latitude'].', '.$row['Longitude'].'); 
                 var marker1 = new google.maps.Marker({ 
                     position: myLatlng1, 
-                    map: map,
-                    title:"'.$row['Aa'].'"
+                    map: map
                 });'
               ;
             }
