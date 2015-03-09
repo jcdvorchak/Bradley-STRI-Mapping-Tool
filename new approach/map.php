@@ -28,7 +28,11 @@
         <?php
            $key = "Aa";
            $getpoints = "SELECT Latitude, Longitude 
+<<<<<<< HEAD
               FROM bien_panama 
+=======
+              FROM s_jdvorchak.bien_panama 
+>>>>>>> origin/master
               WHERE Genus = '$key'";
          
           if(!$result = $con->query($getpoints)){
