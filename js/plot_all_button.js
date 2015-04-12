@@ -25,23 +25,51 @@ function plotAll() {
 		}
 		whereClause += ")";
 		console.log(whereClause); // print to google chrome console for testing
+		
+		var sqlquery = "SELECT Latitude, Longitude FROM bien_panama WHERE Genus = Aa";
+		var aa = "Aa";
 
-		layer.setOptions({ // set the options of the already created layer (in map_loader)
-			suppressInfoWindows:true,
-			map: map,
-			query: {
-		      select: 'Latitude',
-		      from: '1EtC8wMoso-d59wgiTgXaGFTovW2-wcgdb25jNV8p', // new table
-		      where: whereClause
-		  }
-		});
+		var xmlhttp;
+		if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+			xmlhttp = new XMLHttpRequest();
+		} else {// code for IE6, IE5
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
 
-		setMarkers(searchKeys);
-		setMapTips(whereClause);
+		xmlhttp.open("GET", "map-service.php?genus="+aa, false); // post for security
+		xmlhttp.send(); // send variable to php script to query mysql db
 
-		layer.setMap(map);
+		var responseMessage = eval(xmlhttp.responseText); // get response from the query
+		console.log("response0: " + responseMessage[0]); // lat,long
+		console.log("response1: " + responseMessage[1]); //lat
+		console.log("response2: " + responseMessage[2]); //long
+
+
+
+		for (i=0; i<responseMessage.length-1;i++) {
+			var myLatlng1 = new google.maps.LatLng(responseMessage[i][0], responseMessage[i][1]); 
+			var marker1 = new google.maps.Marker({ 
+	            position: myLatlng1, 
+	            map: map
+	        });
+		}
+
+		// layer.setOptions({ // set the options of the already created layer (in map_loader)
+		// 	suppressInfoWindows:true,
+		// 	map: map,
+		// 	query: {
+		//       select: 'Latitude',
+		//       from: '1EtC8wMoso-d59wgiTgXaGFTovW2-wcgdb25jNV8p', // new table
+		//       where: whereClause
+		//   }
+		// });
+
+		// setMarkers(searchKeys);
+		// setMapTips(whereClause);
+
+		// layer.setMap(map);
 	} else {
-		layer.setMap(null);
+		// layer.setMap(null);
 	}
 }
 

@@ -1,8 +1,8 @@
 <?php
   // include 'connect.php';
+  ini_set('display_errors',true);
   $apikey = "AIzaSyCnxStZYPcxJNBjAa7V96g__7lpv80jIMY";
 ?>
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -13,17 +13,11 @@
       body { height: 100%; margin: 0; padding: 0 }
       #map-canvas { height: 100% }
     </style>
-    <script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=
-          <?php echo $apikey; ?>">
-    </script>
-    
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<?php echo $apikey; ?>"></script>  
+
     <?php include 'map_loader.php' ?>
 
-
     <title>Map of Species</title>
-
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 
     <script type="text/javascript" src="js/fusiontips.js"></script>
 
@@ -46,15 +40,16 @@
     <link rel="stylesheet" type="text/css" href="lib/jquery/jquery-ui-1.10.4.custom.css" />
     <script type="text/javascript" src="js/searchbox_ajax_controller.js"></script>
     <script type="text/javascript" src="js/populate_genus_dropdown.js"></script>
-
   </head>
 
   <body>
-    <form class="form-inline" role="form" id="search_container">
+    <form class="form-inline" role="form" id="search_container" action="map-service.php"method="POST">
+      <input type="hidden"name="action"value="savepoint"id="action">
       <div class="form-group">
         <div class="input-group">
           <input type="text" class="form-control" id="search_box" placeholder="Enter genus name">
         </div>
+        <div class="error"style="display:none;"></div>
         <button type="button" class="btn btn-success" onclick="addToList('MyTree')">Add</button>
       </div>
       <div class="dropdown" id="genus">
@@ -130,6 +125,7 @@
                 </div>
               </div>
 
+              
               <script>
                 $('#countryTab').each(function() { //Find list of tabs
                     var $this = $(this); //Store this list
@@ -152,7 +148,7 @@
                     })
                 })
               </script>
-
+              
             </div>
 
           </div>
