@@ -1,3 +1,5 @@
+var markers = [];
+
 function plotAll() {
 	var table;
 
@@ -9,6 +11,8 @@ function plotAll() {
 	}
 
 	if (table.rows.length>0) {
+		deleteMarkers();
+
 		var searchKeys = new Array();
 		for (i=0; i<table.rows.length;i++) {
 			var searchKey = table.rows[i].cells[0].innerHTML; // row value in the query table
@@ -16,18 +20,14 @@ function plotAll() {
 		}
 
 		// get all genus in the list
-		var whereClause = "Genus IN ("; 		// var whereClause = "Genus IN ('Aa','Merremia')";
+		var genus = "";
 		for (i=0;i<searchKeys.length;i++) {
-			whereClause += "'" + searchKeys[i] + "'";
+			genus += "'" + searchKeys[i] + "'";
 			if (i<searchKeys.length-1) {
-				whereClause += ",";
-			}
+				genus += ",";
+			}	
 		}
-		whereClause += ")";
-		console.log(whereClause); // print to google chrome console for testing
-		
-		var sqlquery = "SELECT Latitude, Longitude FROM bien_panama WHERE Genus = Aa";
-		var aa = "Aa";
+		console.log(genus);
 
 		var xmlhttp;
 		if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -36,41 +36,45 @@ function plotAll() {
 			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 		}
 
-		xmlhttp.open("GET", "map-service.php?genus="+aa, false); // post for security
+		xmlhttp.open("GET", "php/query.php?genus="+genus, false); // post for security
 		xmlhttp.send(); // send variable to php script to query mysql db
-
 		var responseMessage = eval(xmlhttp.responseText); // get response from the query
-		console.log("response0: " + responseMessage[0]); // lat,long
-		console.log("response1: " + responseMessage[1]); //lat
-		console.log("response2: " + responseMessage[2]); //long
-
-
+		console.log("response0: " + responseMessage[0]); // lat,long, latin
+		console.log("response1: " + responseMessage[1]);
+		console.log("response2: " + responseMessage[2]);
 
 		for (i=0; i<responseMessage.length-1;i++) {
-			var myLatlng1 = new google.maps.LatLng(responseMessage[i][0], responseMessage[i][1]); 
-			var marker1 = new google.maps.Marker({ 
-	            position: myLatlng1, 
-	            map: map
-	        });
+			var latlng = new google.maps.LatLng(responseMessage[i][0], responseMessage[i][1]); 
+			addMarker(latlng);
 		}
-
-		// layer.setOptions({ // set the options of the already created layer (in map_loader)
-		// 	suppressInfoWindows:true,
-		// 	map: map,
-		// 	query: {
-		//       select: 'Latitude',
-		//       from: '1EtC8wMoso-d59wgiTgXaGFTovW2-wcgdb25jNV8p', // new table
-		//       where: whereClause
-		//   }
-		// });
 
 		// setMarkers(searchKeys);
 		// setMapTips(whereClause);
-
-		// layer.setMap(map);
 	} else {
-		// layer.setMap(null);
+		deleteMarkers();
 	}
+}
+
+// Add a marker to the map and push to the array.
+function addMarker(location) {
+  var marker = new google.maps.Marker({
+    position: location,
+    map: map
+  });
+  markers.push(marker);
+}
+
+// Sets the map on all markers in the array.
+function setAllMap(map) {
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setMap(map);
+  }
+}
+
+// Deletes all markers in the array by removing references to them.
+function deleteMarkers() {
+  setAllMap(null);
+  markers = [];
 }
 
 function setMarkers(searchKeys) {
