@@ -31,8 +31,9 @@
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.2.min.js"></script>
     <script type="text/javascript" src="lib/jquery/jquery-ui-1.10.4.custom.js"></script>
     <link rel="stylesheet" type="text/css" href="lib/jquery/jquery-ui-1.10.4.custom.css" />
-    <script type="text/javascript" src="js/searchbox_ajax_controller.js"></script>
-    <script type="text/javascript" src="js/populate_genus_dropdown.js"></script>
+
+
+    <script type="text/javascript" src="js/populate_dropdowns.js"></script>
   </head>
 
   <body>
@@ -44,35 +45,54 @@
         <div class="error"style="display:none;"></div>
         <button type="button" class="btn btn-success" onclick="addToList('MyTree')">Add</button>
       </div>
+
       <div class="dropdown" id="genus">
-        <button class="btn btn-success dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" onclick="genus_populate()">Genus
+        <button class="btn btn-success dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" onclick="genusDropdown()">Genus
           <span class="caret"></span></button>
           <ul class="dropdown-menu" id="genuslist" role="menu" aria-labelledby="menu1">
-            </ul>
-
-            <script>
-              function dosomething()
-              {
+          </ul>
+          <script> // when a genus name is clicked it is added to the search box
+            function dosomething()
+            {
                 var ul = document.getElementById("genuslist");
 
                 ul.addEventListener('click', function(e)
                 {
-                  if(e.target.tagName === 'LI')
-                  {
-                    addDropDownToList(e.target.id);
-                  }
-                });
-              }
-              dosomething();
-            </script>
-          </div>
+                    if(e.target.tagName === 'LI')
+                    {
+                        addDropDownToList(e.target.id);
+                    }
 
-          <div class="dropdown" id="species">
-            <button class="btn btn-success dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Species
-              <span class="caret"></span></button>
-              <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-              </ul>
-          </div>
+                });
+            }
+
+            dosomething();
+        </script>
+      </div>
+
+      <div class="dropdown" id="species">
+        <button class="btn btn-success dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" onclick="speciesDropdown()">Species
+          <span class="caret"></span></button>
+          <ul class="dropdown-menu" id="specieslist" role="menu" aria-labelledby="menu1">
+          </ul>
+          <script> // when a species name is clicked it is added to the search box
+            function dosomething()
+            {
+                var ul = document.getElementById("specieslist");
+
+                ul.addEventListener('click', function(e)
+                {
+                    if(e.target.tagName === 'LI')
+                    {
+                        addDropDownToList(e.target.id);
+                    }
+
+                });
+            }
+
+            dosomething();
+        </script>
+      </div>
           
           <div class="btn-group" data-toggle="buttons" id="radio">
             <label class="btn btn-success active">

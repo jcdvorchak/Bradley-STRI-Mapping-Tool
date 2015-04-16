@@ -36,12 +36,9 @@ function plotAll() {
 			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 		}
 
-		xmlhttp.open("GET", "php/query.php?genus="+genus, false); // post for security
+		xmlhttp.open("GET", "php/query_for_location.php?genus="+genus, false); // post for security
 		xmlhttp.send(); // send variable to php script to query mysql db
 		var responseMessage = eval(xmlhttp.responseText); // get response from the query
-		console.log("response0: " + responseMessage[0]); // lat,long, latin
-		console.log("response1: " + responseMessage[1]);
-		console.log("response2: " + responseMessage[2]);
 
 		for (i=0; i<responseMessage.length-1;i++) {
 			var latlng = new google.maps.LatLng(responseMessage[i][0], responseMessage[i][1]); 
