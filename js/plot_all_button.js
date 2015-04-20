@@ -13,42 +13,91 @@ function plotAll() {
 	if (table.rows.length>0) {
 		deleteMarkers();
 
-		var searchKeys = new Array();
+		var bienSearchKeys = new Array();
+		var striSearchKeys = new Array();
+		var searchKey;
 		for (i=0; i<table.rows.length;i++) {
-			var searchKey = table.rows[i].cells[0].innerHTML; // row value in the query table
-			searchKeys.push(searchKey.trim());
+			if (table.rows[i].cells[2].innerHTML.indexOf('bien')!=-1) { // if it is bien (index of returns -1 if string is not found)
+				searchKey = table.rows[i].cells[0].innerHTML;
+				bienSearchKeys.push(searchKey.trim());
+				console.log("bien keys: " + bienSearchKeys);
+			} else if (table.rows[i].cells[2].innerHTML.indexOf('stri')!=-1) { // if it is stri (index of returns -1 if string is not found)
+				searchKey = table.rows[i].cells[0].innerHTML;
+				striSearchKeys.push(searchKey.trim());
+				console.log("stri keys: " + striSearchKeys);
+			}
 		}
 
-		// get all genus in the list
-		var genus = "";
-		for (i=0;i<searchKeys.length;i++) {
-			genus += "'" + searchKeys[i] + "'";
-			if (i<searchKeys.length-1) {
-				genus += ",";
-			}	
+		if (bienSearchKeys.length>0) {
+			plotBienData(bienSearchKeys);
 		}
-		console.log(genus);
-
-		var xmlhttp;
-		if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-			xmlhttp = new XMLHttpRequest();
-		} else {// code for IE6, IE5
-			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-		}
-
-		xmlhttp.open("GET", "php/query_for_location.php?genus="+genus, false); // post for security
-		xmlhttp.send(); // send variable to php script to query mysql db
-		var responseMessage = eval(xmlhttp.responseText); // get response from the query
-
-		for (i=0; i<responseMessage.length-1;i++) {
-			var latlng = new google.maps.LatLng(responseMessage[i][0], responseMessage[i][1]); 
-			addMarker(latlng);
+		if (striSearchKeys.length>0) {
+			plotStriData(striSearchKeys);
 		}
 
 		// setMarkers(searchKeys);
 		// setMapTips(whereClause);
 	} else {
 		deleteMarkers();
+	}
+}
+
+function plotBienData(searchKeys) {
+	console.log("plotting bien data...");
+	// get all genus in the list
+	var whereClause = "";
+	for (i=0;i<searchKeys.length;i++) {
+		whereClause += "Latin LIKE '" + searchKeys[i] + "%'";
+		if (i<searchKeys.length-1) {
+			whereClause += " OR ";
+		}	
+	}
+	console.log(whereClause); // comma separated genus list
+
+	var xmlhttp;
+	if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+		xmlhttp = new XMLHttpRequest();
+	} else {// code for IE6, IE5
+		xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+
+	xmlhttp.open("GET", "php/query_for_location.php?where="+whereClause+"&type=bien", false); // post for security
+	xmlhttp.send(); // send variable to php script to query mysql db
+	var responseMessage = eval(xmlhttp.responseText); // get response from the query
+
+	for (i=0; i<responseMessage.length-1;i++) {
+		var latlng = new google.maps.LatLng(responseMessage[i][0], responseMessage[i][1]); 
+		addMarker(latlng);
+	}
+}
+
+function plotStriData(searchKeys) {
+	console.log("plotting stri data...");
+	// get all genus in the list
+	var whereClause = "";
+	for (i=0;i<searchKeys.length;i++) {
+		whereClause += "GenusSpecies LIKE '" + searchKeys[i] + "%'";
+		if (i<searchKeys.length-1) {
+			whereClause += " OR ";
+		}	
+	}
+	console.log(whereClause); // comma separated genus list
+
+	var xmlhttp;
+	if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+		xmlhttp = new XMLHttpRequest();
+	} else {// code for IE6, IE5
+		xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+
+	xmlhttp.open("GET", "php/query_for_location.php?where="+whereClause+"&type=stri", false); // post for security
+	xmlhttp.send(); // send variable to php script to query mysql db
+	var responseMessage = eval(xmlhttp.responseText); // get response from the query
+
+	for (i=0; i<responseMessage.length-1;i++) {
+		var latlng = new google.maps.LatLng(responseMessage[i][1], responseMessage[i][0]); 
+		console.log(latlng);
+		addMarker(latlng);
 	}
 }
 
@@ -74,6 +123,9 @@ function deleteMarkers() {
   markers = [];
 }
 
+
+
+/*-------------------------------------------unused currently-------------------------------------*/
 function setMarkers(searchKeys) {
 	var markerIcons = ["small_yellow","small_green","small_blue","small_purple","measle_turquoise"/*,"measle_brown","measle_grey","measle_white"*/];
 	var styles = new Array();
