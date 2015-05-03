@@ -17,9 +17,9 @@ function addToList(TreeText) {
 	textCell.innerHTML = treeText;
 	btnCell.innerHTML = "<button type='button' class='btn btn-success' data-toggle='button' aria-pressed='false' autocomplete='off' onclick='delRow(this)'>Delete</button>";//Delete Button
 	if (document.getElementById('bien').checked) {
-		dataTypeCell.innerHTML = "<img id='bien' alt='bien' src='images/small_red.png'>";
+		dataTypeCell.innerHTML = "bien";//"<img id='bien' alt='bien' src='images/small_red.png'>";
 	} else if (document.getElementById('stri').checked) {
-		dataTypeCell.innerHTML = "<img id='stri' alt='stri' src='images/small_green.png'>";
+		dataTypeCell.innerHTML = "stri";//"<img id='stri' alt='stri' src='images/small_green.png'>";
 	} else {
 		dataTypeCell.innerHTML = "<?>";
 	}

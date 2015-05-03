@@ -30,12 +30,14 @@ function plotAll() {
 
 		if (bienSearchKeys.length>0) {
 			plotBienData(bienSearchKeys);
+			//setMarkers(bienSearchKeys, 1);
 		}
 		if (striSearchKeys.length>0) {
 			plotStriData(striSearchKeys);
+			//setMarkers(striSearchKeys, 2);
 		}
 
-		// setMarkers(searchKeys);
+		//setMarkers(searchKeys);
 		// setMapTips(whereClause);
 	} else {
 		deleteMarkers();
@@ -67,7 +69,8 @@ function plotBienData(searchKeys) {
 
 	for (i=0; i<responseMessage.length-1;i++) {
 		var latlng = new google.maps.LatLng(responseMessage[i][0], responseMessage[i][1]); 
-		addMarker(latlng);
+		var icon = determineIcon(searchKeys, responseMessage[i], 1);
+		addMarker(latlng, responseMessage[i], icon);
 	}
 }
 
@@ -96,18 +99,48 @@ function plotStriData(searchKeys) {
 
 	for (i=0; i<responseMessage.length-1;i++) {
 		var latlng = new google.maps.LatLng(responseMessage[i][1], responseMessage[i][0]); 
+		var icon = determineIcon(searchKeys, responseMessage[i], 2);
+		addMarker(latlng, responseMessage[i], icon);
 		console.log(latlng);
-		addMarker(latlng);
 	}
 }
 
 // Add a marker to the map and push to the array.
-function addMarker(location) {
+function addMarker(location, responseMessageCurrent, iconName) {
   var marker = new google.maps.Marker({
     position: location,
-    map: map
+    map: map,
+    title: responseMessageCurrent[2],
+    icon: iconName
   });
   markers.push(marker);
+}
+
+function determineIcon(searchKeys, responseMessageCurrent, source) {
+	var bienIcons = ["small_yellow","small_green","small_blue","small_purple","measle_turquoise"];
+	var striIcons = ["square_yellow","square_green","square_blue","square_purple","square_turquoise"];
+	var res = responseMessageCurrent[2].split(" ");
+	var genusName = res[0];
+	var def = "images/";
+	var iconName = "images/";
+
+	if(source == 1) {
+		for(j = 0; j < searchKeys.length; j++) {
+			if(searchKeys[j] == genusName) 
+				iconName += bienIcons[j];
+		}
+	}
+	else if(source == 2) {
+		for(m = 0; m < searchKeys.length; m++) {
+			if(searchKeys[m] == genusName) 
+				iconName += striIcons[m];
+		}
+	}
+	
+	if(iconName == def)
+		iconName = "images/measle_turquoise";
+	
+	return iconName;
 }
 
 // Sets the map on all markers in the array.
@@ -123,40 +156,65 @@ function deleteMarkers() {
   markers = [];
 }
 
-
-
-/*-------------------------------------------unused currently-------------------------------------*/
-function setMarkers(searchKeys) {
-	var markerIcons = ["small_yellow","small_green","small_blue","small_purple","measle_turquoise"/*,"measle_brown","measle_grey","measle_white"*/];
+function setMarkers(searchKeys, option) {
+	var bienIcons = ["small_yellow","small_green","small_blue","small_purple","measle_turquoise"/*,"measle_brown","measle_grey","measle_white"*/];
+	var striIcons = ["square_yellow","square_green","square_blue","square_purple","square_turquoise"];
 	var styles = new Array();
 	var rows = table.rows;
 
-	for (i = 0; i<searchKeys.length; i++) {
-		// set an icon for each query in the query table
-		styles.push({
-				where: "Genus = "+"'"+searchKeys[searchKeys.length-(i+1)]+"'", // color stays with query while adding more queries
-				markerOptions: {
-					iconName: markerIcons[i] // if greater than 5 it will default to red
-				}
-		});
+	if(option == 1) {
+		for (i = 0; i<searchKeys.length; i++) {
+			// set an icon for each query in the query table
+			styles.push({
+					where: "Genus = "+"'"+searchKeys[searchKeys.length-(i+1)]+"'", // color stays with query while adding more queries
+					markerOptions: {
+						iconName: bienIcons[i] // if greater than 5 it will default to red
+					}
+			});
 
-		// add image of icon to query table
-		var row = rows[rows.length-(i+1)];
-		if (row.cells.length>=3) {
-			row.deleteCell(2);
+			// add image of icon to query table
+			var row = rows[rows.length-(i+1)];
+			if (row.cells.length>=3) {
+				row.deleteCell(2);
+			}
+			var markerCell = row.insertCell(2);
+			console.log(markerCell.innerHTML);
+			if (i<5) { // only 5 options
+				markerCell.innerHTML = "<img id='bien' src='images/"+bienIcons[i]+".png' alt='image not found'>";
+			} else { // default to small_red
+				markerCell.innerHTML = "<img id='bien' src='images/small_red.png' alt='image not found'>";
+			}
 		}
-		var markerCell = row.insertCell(2);
-		console.log(markerCell.innerHTML);
-		if (i<5) { // only 5 options
-			markerCell.innerHTML = "<img src='images/"+markerIcons[i]+".png' alt='image not found'>";
-		} else { // default to small_red
-			markerCell.innerHTML = "<img src='images/small_red.png' alt='image not found'>";
+	}
+	else if(option == 2) {
+		for (i = 0; i<searchKeys.length; i++) {
+			// set an icon for each query in the query table
+			styles.push({
+					where: "Genus = "+"'"+searchKeys[searchKeys.length-(i+1)]+"'", // color stays with query while adding more queries
+					markerOptions: {
+						iconName: striIcons[i] // if greater than 5 it will default to red
+					}
+			});
+
+			// add image of icon to query table
+			var row = rows[rows.length-(i+1)];
+			if (row.cells.length>=3) {
+				row.deleteCell(2);
+			}
+			var markerCell = row.insertCell(2);
+			console.log(markerCell.innerHTML);
+			if (i<5) { // only 5 options
+				markerCell.innerHTML = "<img id='stri' src='images/"+striIcons[i]+".jpg' alt='image not found'>";
+			} else { // default to small_red
+				markerCell.innerHTML = "<img id='stri' src='images/small_red.png' alt='image not found'>";
+			}
 		}
 	}
 
 	layer.set('styles',styles);
 }
 
+/*-------------------------------------------unused currently-------------------------------------*/
 function setMapTips(whereClause) {
 	layer.disableMapTips(); // wipe previous map tips
 	layer.enableMapTips({
