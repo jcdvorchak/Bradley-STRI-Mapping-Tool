@@ -15,13 +15,13 @@
 	      		}
 	    	}
     	} else if ($_GET['type']=='stri') { // query stri
-			$query = "SELECT QX, QY, GenusSpecies FROM stri_bci WHERE " . $_GET['where'] . "";
+			$query = "SELECT GX, GY, GenusSpecies FROM stri_bci WHERE " . $_GET['where'] . "";
 
 	        if(!$result = $con->query($query)){
 	  		 	die('There was an error running the query [' . $con->error . ']');
 	      	} else {
 	        	while ($row = $result->fetch_assoc()) {
-	          		array_push($points, array($row['QX'], $row['QY'], $row['GenusSpecies']));
+	          		array_push($points, array($row['GX'], $row['GY'], $row['GenusSpecies']));
 	      		}
 	    	}
     	}

@@ -46,6 +46,33 @@
         <button type="button" class="btn btn-success" onclick="addToList('MyTree')">Add</button>
       </div>
 
+        <div class="btn-group" data-toggle="buttons" id="stri_filter">
+          <label class="btn btn-success">
+            <input type="checkbox" id="dead" autocomplete="off">DEAD
+          </label>
+        </div>
+
+        <div class="dropdown" id="dbhmax">
+          <button class="btn btn-success btn-xs dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" >DBH MAX
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" id="dbhmaxlist" role="menu" aria-labelledby="menu1"></ul>
+        </div>
+
+        <div class="dropdown" id="dbhmin">
+          <button class="btn btn-success btn-xs dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" >DBH MIN
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" id="dbhminlist" role="menu" aria-labelledby="menu1"></ul>
+        </div>
+
+        <div class="dropdown" id="census">
+          <button class="btn btn-success dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" >CENSUS
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" id="censuslist" role="menu" aria-labelledby="menu1"></ul>
+        </div>
+        
       <div class="dropdown" id="genus">
         <button class="btn btn-success dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" onclick="genusDropdown()">Genus
           <span class="caret"></span></button>
@@ -94,14 +121,15 @@
         </script>
       </div>
           
-          <div class="btn-group" data-toggle="buttons" id="radio">
-            <label class="btn btn-success active">
-              <input type="radio" name="options" id="bien" autocomplete="off" checked>BIEN
-            </label>
-            <label class="btn btn-success">
-              <input type="radio" name="options" id="stri" autocomplete="off">STRI
-            </label>
-          </div>
+        <div class="btn-group" data-toggle="buttons" id="radio">
+          <label class="btn btn-success active">
+            <input type="radio" name="options" id="bien" autocomplete="off" checked>BIEN
+          </label>
+          <label class="btn btn-success">
+            <input type="radio" name="options" id="stri" autocomplete="off">STRI
+          </label>
+        </div>
+
       </form>
 
         <div class="btn-group" data-toggle="buttons" id="layer_control_container">

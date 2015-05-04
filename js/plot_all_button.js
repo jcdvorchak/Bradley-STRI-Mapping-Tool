@@ -76,14 +76,32 @@ function plotBienData(searchKeys) {
 
 function plotStriData(searchKeys) {
 	console.log("plotting stri data...");
+
+	var status = "%";
+	var dbhMin = 0;
+	var dbhMax = 3500;
+	var censusId = -1;
+	//var plot; //IMPLEMENT
+
+	// If dead is checked show trees of all Status
+	if (document.getElementById('dead').checked) {
+		console.log("dead checked");
+		showDead = "%";
+	} else { // If dead is not check only show trees that are alive
+		console.log("dead not checked");
+		showDead = "alive";
+	}
+
+
 	// get all genus in the list
-	var whereClause = "";
+	var whereClause = "(";
 	for (i=0;i<searchKeys.length;i++) {
 		whereClause += "GenusSpecies LIKE '" + searchKeys[i] + "%'";
 		if (i<searchKeys.length-1) {
 			whereClause += " OR ";
-		}	
+		}
 	}
+	whereClause += ") AND Status LIKE '"+showDead+"'"; // filter based on Dead button
 	console.log(whereClause); // comma separated genus list
 
 	var xmlhttp;
@@ -101,7 +119,6 @@ function plotStriData(searchKeys) {
 		var latlng = new google.maps.LatLng(responseMessage[i][1], responseMessage[i][0]); 
 		var icon = determineIcon(searchKeys, responseMessage[i], 2);
 		addMarker(latlng, responseMessage[i], icon);
-		console.log(latlng);
 	}
 }
 
