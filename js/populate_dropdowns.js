@@ -83,32 +83,48 @@ function getStriCensusIds() {
 
 // separate species from genus in LatinNames from the bien_panama table
 function extractBienSpecies(bienLatinNames) {
-  bienSpeciesNames = new Array(bienLatinNames.length);
+  bienSpeciesNames = new Array();
 
+  var validNameCount = 0;
   for (i=0; i<bienLatinNames.length; i++) {
     var currLatin = bienLatinNames[i][0].split(" ");
-    bienSpeciesNames[i] = new Array(2);
-    bienSpeciesNames[i][0] = currLatin[1];
-    bienSpeciesNames[i][1] = currLatin[0];
+    if (isFirstSpecies(bienSpeciesNames, currLatin[1])) {
+      bienSpeciesNames[validNameCount] = new Array(2);
+      bienSpeciesNames[validNameCount][0] = currLatin[1];
+      bienSpeciesNames[validNameCount][1] = currLatin[0];
+      validNameCount++;
+    }
   }
   bienSpeciesNames.sort();
-
-  //TODO get rid of duplicate species names
 }
 
 // separate species from genus in LatinNames from the bien_panama table
 function extractStriSpecies(striLatinNames) {
-  striSpeciesNames = new Array(striLatinNames.length);
+  striSpeciesNames = new Array();
 
+  var validNameCount = 0;
   for (i=0; i<striLatinNames.length; i++) {
     var currLatin = striLatinNames[i][0].split(" ");
-    striSpeciesNames[i] = new Array(2);
-    striSpeciesNames[i][0] = currLatin[1];
-    striSpeciesNames[i][1] = currLatin[0];
+    if (isFirstSpecies(striSpeciesNames, currLatin[1])) {
+      striSpeciesNames[validNameCount] = new Array(2);
+      striSpeciesNames[validNameCount][0] = currLatin[1];
+      striSpeciesNames[validNameCount][1] = currLatin[0];
+      validNameCount++;
+    }
   }
   striSpeciesNames.sort();
+}
 
-  //TODO get rid of duplicate species names
+function isFirstSpecies(speciesNames,name) {
+  var exists = true;
+  for (var j = 0; j<speciesNames.length-1; j++) {
+    if (speciesNames.length>1 && speciesNames[j][0]!=null) {
+      if (speciesNames[j][0]==name) {
+        exists = false;
+      }
+    }
+  }
+  return exists;
 }
 
 getBienGenusNames();
@@ -210,6 +226,8 @@ function dbhMinDropdown() {
           dbhminlist.removeChild(dbhminlist.firstChild);
       }
   }
+  
+  addEmptyNode(dbhminlist);
 
   for (i = 0; i<36; i++) {
     var node = document.createElement("li");
@@ -229,6 +247,8 @@ function dbhMaxDropdown() {
       }
   }
 
+  addEmptyNode(dbhmaxlist);
+
   for (i = 0; i<36; i++) {
     var node = document.createElement("li");
     var textnode = document.createTextNode(i*100);
@@ -247,6 +267,8 @@ function censusDropdown() {
       }
   }
 
+  addEmptyNode(ul);
+
   for (i=0; i<striCensusIds.length-1;i++) {
         var node = document.createElement("li");
         var textnode = document.createTextNode(striCensusIds[i]); // what to show in the drop down
@@ -254,4 +276,12 @@ function censusDropdown() {
         node.setAttribute("id",striCensusIds[i]); // what to add the search box when a species is clicked
         ul.appendChild(node);
     }
+}
+
+function addEmptyNode(list) {
+  var node = document.createElement("li");
+  var textnode = document.createTextNode("(empty)"); // what to show in the drop down
+  node.appendChild(textnode);
+  node.setAttribute("id",""); // what to add the search box when a species is clicked
+  list.appendChild(node);
 }
