@@ -73,23 +73,30 @@ span.ui-icon {
     position: absolute;
     z-index: 10;
     top: 35px;
-    left: 200px;
+    left: 260px;
     padding-top: 5px;
 }
 
 #dbhmax {
     position: absolute;
     z-index: 10;
-    top: 60px;
-    left: 200px;
+    top: 70px;
+    left: 260px;
     padding-top: 5px;
 }
 
 #census {
     position: absolute;
     z-index: 10;
+    top: 105px;
+    left: 260px;
+    padding-top: 5px;
+}
+
+#test {
+    position: absolute;
     top: 35px;
-    left: 300px;
+    left: 400px;
     padding-top: 5px;
 }
 
@@ -249,6 +256,15 @@ span.ui-icon {
     overflow-x: hidden;
 }
 
+.dropdown-menu-right {
+    max-height: 225px;
+    overflow-x: hidden;
+}
+
 .dropdown-menu li {
     width: 100%;
+}
+
+.input-append .btn.dropdown-toggle {
+    float: none;
 }

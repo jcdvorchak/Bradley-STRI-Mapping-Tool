@@ -35,17 +35,12 @@ function plotAll() {
 		if (striSearchKeys.length>0) {
 			plotStriData(striSearchKeys);
 			//setMarkers(striSearchKeys, 2);
-		}
-
-		//setMarkers(searchKeys);
-		// setMapTips(whereClause);
-	} else {
+		}	} else {
 		deleteMarkers();
 	}
 }
 
 function plotBienData(searchKeys) {
-	console.log("plotting bien data...");
 	// get all genus in the list
 	var whereClause = "";
 	for (i=0;i<searchKeys.length;i++) {
@@ -54,7 +49,7 @@ function plotBienData(searchKeys) {
 			whereClause += " OR ";
 		}	
 	}
-	console.log(whereClause); // comma separated genus list
+	console.log("BIEN where clause: \n"+whereClause); // comma separated genus list
 
 	var xmlhttp;
 	if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -75,21 +70,30 @@ function plotBienData(searchKeys) {
 }
 
 function plotStriData(searchKeys) {
-	console.log("plotting stri data...");
-
 	var status = "%";
-	var dbhMin = 0;
-	var dbhMax = 3500;
-	var censusId = -1;
+	var dbhMin = "0";
+	var dbhMax = "3500";
+	var censusId = "-1";
 	//var plot; //IMPLEMENT
 
 	// If dead is checked show trees of all Status
 	if (document.getElementById('dead').checked) {
-		console.log("dead checked");
 		showDead = "%";
 	} else { // If dead is not check only show trees that are alive
-		console.log("dead not checked");
 		showDead = "alive";
+	}
+
+	// set the dbh if there is input in the boxes
+	if (document.getElementById('dbhmininput').value != "") {
+		dbhMin = document.getElementById('dbhmininput').value;
+	}
+	if (document.getElementById('dbhmaxinput').value != "") {
+		dbhMax = document.getElementById('dbhmaxinput').value;
+	}
+
+	// set the censusId if there is one in the box
+	if (document.getElementById('censusinput').value != "") {
+		censusId = document.getElementById('censusinput').value;		
 	}
 
 
@@ -102,7 +106,11 @@ function plotStriData(searchKeys) {
 		}
 	}
 	whereClause += ") AND Status LIKE '"+showDead+"'"; // filter based on Dead button
-	console.log(whereClause); // comma separated genus list
+	whereClause += " AND DBH > "+dbhMin.toString()+" AND DBH < "+dbhMax.toString(); // filter based on DBH
+	if (censusId != "-1") { // filter by CensusId if there is one in the censusinput
+		whereClause += " AND CensusID = "+censusId;
+	}
+	console.log("STRI where clause: \n"+whereClause); // comma separated genus list
 
 	var xmlhttp;
 	if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -195,7 +203,6 @@ function setMarkers(searchKeys, option) {
 				row.deleteCell(2);
 			}
 			var markerCell = row.insertCell(2);
-			console.log(markerCell.innerHTML);
 			if (i<5) { // only 5 options
 				markerCell.innerHTML = "<img id='bien' src='images/"+bienIcons[i]+".png' alt='image not found'>";
 			} else { // default to small_red
@@ -219,7 +226,6 @@ function setMarkers(searchKeys, option) {
 				row.deleteCell(2);
 			}
 			var markerCell = row.insertCell(2);
-			console.log(markerCell.innerHTML);
 			if (i<5) { // only 5 options
 				markerCell.innerHTML = "<img id='stri' src='images/"+striIcons[i]+".jpg' alt='image not found'>";
 			} else { // default to small_red

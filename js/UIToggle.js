@@ -5,4 +5,5 @@ function toggleAll() {
 	$( ".dropdown" ).fadeToggle( "slow", "linear" );
 	$( ".form-group" ).fadeToggle( "slow", "linear" );
 	$( "#submit" ).fadeToggle( "slow", "linear" );
+	$( ".input-group" ).fadeToggle( "slow","linear");
 }

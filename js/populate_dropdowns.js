@@ -4,6 +4,7 @@ var bienLatinNames;
 var striGenusNames;
 var striSpeciesNames;
 var striLatinNames;
+var striCensusIds;
 
 // get genus names from the bien_panama table
 function getBienGenusNames() {
@@ -65,6 +66,21 @@ function getStriLatinNames() {
   striLatinNames = eval(xmlhttp.responseText); // get response from the query
 }
 
+// get census ids from the stri_bci table
+function getStriCensusIds() {
+  console.log("loading census ids...");
+  var xmlhttp;
+  if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp = new XMLHttpRequest();
+  } else { // code for IE6, IE5
+    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+
+  xmlhttp.open("GET", "php/query_for_list.php?query=census&type=stri", false); // post for security
+  xmlhttp.send(); // send variable to php script to query mysql db
+  striCensusIds = eval(xmlhttp.responseText); // get response from the query
+}
+
 // separate species from genus in LatinNames from the bien_panama table
 function extractBienSpecies(bienLatinNames) {
   bienSpeciesNames = new Array(bienLatinNames.length);
@@ -101,6 +117,7 @@ extractBienSpecies(bienLatinNames);
 getStriGenusNames();
 getStriLatinNames();
 extractStriSpecies(striLatinNames);
+getStriCensusIds();
 
 // populate search box autocomplete
 function loadAutocomplete() {
@@ -153,7 +170,7 @@ function genusDropdown () {
   }
 }
 
-// poopulate species dropdown
+// populate species dropdown
 function speciesDropdown () {
   var ul = document.getElementById("specieslist");
   if (ul) {
@@ -183,4 +200,58 @@ function speciesDropdown () {
         ul.appendChild(node);
     }
   }
+}
+
+// populate dbh min dropdown
+function dbhMinDropdown() {
+  var dbhminlist = document.getElementById("dbhminlist");
+  if (dbhminlist) {
+      while(dbhminlist.firstChild){
+          dbhminlist.removeChild(dbhminlist.firstChild);
+      }
+  }
+
+  for (i = 0; i<36; i++) {
+    var node = document.createElement("li");
+    var textnode = document.createTextNode(i*100);
+    node.appendChild(textnode);
+    node.setAttribute("id",i*100);
+    dbhminlist.appendChild(node);
+  }
+}
+
+// populate dbh max dropdown
+function dbhMaxDropdown() {
+  var dbhmaxlist = document.getElementById("dbhmaxlist");
+  if (dbhmaxlist) {
+      while(dbhmaxlist.firstChild){
+          dbhmaxlist.removeChild(dbhmaxlist.firstChild);
+      }
+  }
+
+  for (i = 0; i<36; i++) {
+    var node = document.createElement("li");
+    var textnode = document.createTextNode(i*100);
+    node.appendChild(textnode);
+    node.setAttribute("id",i*100);
+    dbhmaxlist.appendChild(node);
+  }
+}
+
+// populate census dropdown with CensusID
+function censusDropdown() {
+  var ul = document.getElementById("censuslist");
+  if (ul) {
+      while(ul.firstChild){
+          ul.removeChild(ul.firstChild);
+      }
+  }
+
+  for (i=0; i<striCensusIds.length-1;i++) {
+        var node = document.createElement("li");
+        var textnode = document.createTextNode(striCensusIds[i]); // what to show in the drop down
+        node.appendChild(textnode);
+        node.setAttribute("id",striCensusIds[i]); // what to add the search box when a species is clicked
+        ul.appendChild(node);
+    }
 }

@@ -6,6 +6,7 @@
 	$bienLatinQuery = "SELECT Latin FROM bien_panama GROUP BY Latin";
 	$striGenusQuery = "SELECT Genus FROM stri_bci GROUP BY Genus";
 	$striLatinQuery = "SELECT GenusSpecies FROM stri_bci GROUP BY GenusSpecies";
+	$striCensusQuery = "SELECT CensusID FROM stri_bci GROUP BY CensusID";
 
 	$queryResults = array();
 
@@ -47,6 +48,14 @@
 			  	} else {
 			    	while ($row = $result->fetch_assoc()) {
 			      		array_push($queryResults, array($row['GenusSpecies']));
+			  		}
+				}
+			} else if ($_GET['query']=='census') {
+				if(!$result = $con->query($striCensusQuery)){
+			 		die('There was an error running the query [' . $con->error . ']');
+			  	} else {
+			    	while ($row = $result->fetch_assoc()) {
+			      		array_push($queryResults, array($row['CensusID']));
 			  		}
 				}
 			}

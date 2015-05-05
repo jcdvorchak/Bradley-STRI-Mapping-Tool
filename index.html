@@ -52,26 +52,96 @@
           </label>
         </div>
 
-        <div class="dropdown" id="dbhmax">
-          <button class="btn btn-success btn-xs dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" >DBH MAX
-            <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu" id="dbhmaxlist" role="menu" aria-labelledby="menu1"></ul>
-        </div>
-
-        <div class="dropdown" id="dbhmin">
-          <button class="btn btn-success btn-xs dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" >DBH MIN
-            <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu" id="dbhminlist" role="menu" aria-labelledby="menu1"></ul>
-        </div>
-
-        <div class="dropdown" id="census">
-          <button class="btn btn-success dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" >CENSUS
+        <!-- <div class="dropdown" id="census">
+          <button class="btn btn-success dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" onclick="censusDropdown()">CENSUS
             <span class="caret"></span>
           </button>
           <ul class="dropdown-menu" id="censuslist" role="menu" aria-labelledby="menu1"></ul>
-        </div>
+        </div> -->
+
+        <div class="input-group" id="census">
+            <input type="text" id="censusinput" class="form-control input-sm" value="">
+          <div class="input-group-btn">
+            <button type="button" class="btn btn-success btn-sm dropdown-toggle" id="menu1" data-toggle="dropdown" aria-expanded="false" onclick="censusDropdown()">CENSUS
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right" id="censuslist" role="menu">
+            </ul>
+            <script> // when a genus name is clicked it is added to the search box
+            function dosomething()
+            {
+                var ul = document.getElementById("censuslist");
+
+                ul.addEventListener('click', function(e)
+                {
+                    if(e.target.tagName === 'LI')
+                    {
+                        document.getElementById('censusinput').value = e.target.id;
+                    }
+
+                });
+            }
+
+            dosomething();
+        </script>
+          </div><!-- /btn-group -->
+        </div><!-- /input-group -->
+
+        <div class="input-group" id="dbhmax">
+            <input type="text" id="dbhmaxinput" class="form-control input-sm" value="">
+          <div class="input-group-btn">
+            <button type="button" class="btn btn-success btn-sm dropdown-toggle" id="menu1" data-toggle="dropdown" aria-expanded="false" onclick="dbhMaxDropdown()">DBH MAX 
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right" id="dbhmaxlist" role="menu">
+            </ul>
+            <script> // when a genus name is clicked it is added to the search box
+            function dosomething()
+            {
+                var ul = document.getElementById("dbhmaxlist");
+
+                ul.addEventListener('click', function(e)
+                {
+                    if(e.target.tagName === 'LI')
+                    {
+                        document.getElementById('dbhmaxinput').value = e.target.id;
+                    }
+
+                });
+            }
+
+            dosomething();
+        </script>
+          </div><!-- /btn-group -->
+        </div><!-- /input-group -->
+
+        <div class="input-group" id="dbhmin">
+            <input type="text" id="dbhmininput" class="form-control input-sm" value="">
+          <div class="input-group-btn">
+            <button type="button" class="btn btn-success btn-sm dropdown-toggle" id="menu1" data-toggle="dropdown" aria-expanded="false" onclick="dbhMinDropdown()">DBH MIN 
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right" id="dbhminlist" role="menu">
+            </ul>
+            <script> // when a genus name is clicked it is added to the search box
+            function dosomething()
+            {
+                var ul = document.getElementById("dbhminlist");
+
+                ul.addEventListener('click', function(e)
+                {
+                    if(e.target.tagName === 'LI')
+                    {
+                        document.getElementById('dbhmininput').value = e.target.id;
+                    }
+
+                });
+            }
+
+            dosomething();
+        </script>
+          </div><!-- /btn-group -->
+        </div><!-- /input-group -->
         
       <div class="dropdown" id="genus">
         <button class="btn btn-success dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" onclick="genusDropdown()">Genus
