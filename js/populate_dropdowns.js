@@ -68,7 +68,7 @@ function getStriLatinNames() {
 
 // get census ids from the stri_bci table
 function getStriCensusIds() {
-  console.log("loading census ids...");
+  console.log("loading census ids");
   var xmlhttp;
   if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
     xmlhttp = new XMLHttpRequest();

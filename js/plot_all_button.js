@@ -1,133 +1,130 @@
 var markers = [];
 
 function plotAll() {
-	var table;
+    var table;
 
-	var activeTab = document.getElementsByClassName('tab-pane active')[0];
-	if(activeTab.id == "panama") {
-		table = document.getElementById("listTablePanama");
-	} else if(activeTab.id == "colombia") {
-		table = document.getElementById("listTableColombia");
-	}
+    var activeTab = document.getElementsByClassName('tab-pane active')[0];
+    if(activeTab.id === "panama") {
+        table = document.getElementById("listTablePanama");
+    } else if(activeTab.id === "colombia") {
+        table = document.getElementById("listTableColombia");
+    }
 
-	if (table.rows.length>0) {
-		deleteMarkers();
+    if (table.rows.length > 0) {
+        deleteMarkers();
 
-		var bienSearchKeys = new Array();
-		var striSearchKeys = new Array();
-		var searchKey;
-		for (i=0; i<table.rows.length;i++) {
-			if (table.rows[i].cells[2].innerHTML.indexOf('bien')!=-1) { // if it is bien (index of returns -1 if string is not found)
-				searchKey = table.rows[i].cells[0].innerHTML;
-				bienSearchKeys.push(searchKey.trim());
-				console.log("bien keys: " + bienSearchKeys);
-			} else if (table.rows[i].cells[2].innerHTML.indexOf('stri')!=-1) { // if it is stri (index of returns -1 if string is not found)
-				searchKey = table.rows[i].cells[0].innerHTML;
-				striSearchKeys.push(searchKey.trim());
-				console.log("stri keys: " + striSearchKeys);
-			}
-		}
+        var bienSearchKeys = new Array();
+        var striSearchKeys = new Array();
+        var searchKey;
+        for (var i=0; i<table.rows.length;i++) {
+            if (table.rows[i].cells[2].innerHTML.indexOf('bien')!=-1) { // if it is bien (index of returns -1 if string is not found)
+                searchKey = table.rows[i].cells[0].innerHTML;
+                bienSearchKeys.push(searchKey.trim());
+                console.log("bien keys: " + bienSearchKeys);
+            } else if (table.rows[i].cells[2].innerHTML.indexOf('stri')!=-1) { // if it is stri (index of returns -1 if string is not found)
+                searchKey = table.rows[i].cells[0].innerHTML;
+                striSearchKeys.push(searchKey.trim());
+                console.log("stri keys: " + striSearchKeys);
+            }
+        }
 
-		if (bienSearchKeys.length>0) {
-			plotBienData(bienSearchKeys);
-			//setMarkers(bienSearchKeys, 1);
-		}
-		if (striSearchKeys.length>0) {
-			plotStriData(striSearchKeys);
-			//setMarkers(striSearchKeys, 2);
-		}	} else {
-		deleteMarkers();
-	}
+        if (bienSearchKeys.length>0) {
+            plotBienData(bienSearchKeys);
+        }
+        if (striSearchKeys.length>0) {
+            plotStriData(striSearchKeys);
+        }    
+    }
 }
 
 function plotBienData(searchKeys) {
-	// get all genus in the list
-	var whereClause = "";
-	for (i=0;i<searchKeys.length;i++) {
-		whereClause += "Latin LIKE '" + searchKeys[i] + "%'";
-		if (i<searchKeys.length-1) {
-			whereClause += " OR ";
-		}	
-	}
-	console.log("BIEN where clause: \n"+whereClause); // comma separated genus list
+    // get all genus in the list
+    var whereClause = "";
+    for (var i=0;i<searchKeys.length;i++) {
+        whereClause += "Latin LIKE '" + searchKeys[i] + "%'";
+        if (i<searchKeys.length-1) {
+            whereClause += " OR ";
+        }   
+    }
+    console.log("BIEN where clause: \n"+whereClause); // comma separated genus list
 
-	var xmlhttp;
-	if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-		xmlhttp = new XMLHttpRequest();
-	} else {// code for IE6, IE5
-		xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-	}
+    var xmlhttp;
+    if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else {// code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
 
-	xmlhttp.open("GET", "php/query_for_location.php?where="+whereClause+"&type=bien", false); // post for security
-	xmlhttp.send(); // send variable to php script to query mysql db
-	var responseMessage = eval(xmlhttp.responseText); // get response from the query
+    xmlhttp.open("GET", "php/query_for_location.php?where="+whereClause+"&type=bien", false); // post for security
+    xmlhttp.send(); // send variable to php script to query mysql db
+    var responseMessage = eval(xmlhttp.responseText); // get response from the query
 
-	for (i=0; i<responseMessage.length-1;i++) {
-		var latlng = new google.maps.LatLng(responseMessage[i][0], responseMessage[i][1]); 
-		var icon = determineIcon(searchKeys, responseMessage[i], 1);
-		addMarker(latlng, responseMessage[i], icon);
-	}
+    for (var i=0; i<responseMessage.length;i++) {
+        var latlng = new google.maps.LatLng(responseMessage[i][0], responseMessage[i][1]); 
+        var icon = determineIcon(searchKeys, responseMessage[i], 1);
+        addMarker(latlng, responseMessage[i], icon);
+    }
 }
 
 function plotStriData(searchKeys) {
-	var status = "%";
-	var dbhMin = "0";
-	var dbhMax = "3500";
-	var censusId = "-1";
-	//var plot; //IMPLEMENT
+    var status = "%";
+    var dbhMin = "0";
+    var dbhMax = "3500";
+    var censusId = "-1";
+    //var plot; //IMPLEMENT
 
-	// If dead is checked show trees of all Status
-	if (document.getElementById('dead').checked) {
-		showDead = "%";
-	} else { // If dead is not check only show trees that are alive
-		showDead = "alive";
-	}
+    // If dead is checked show trees of all Status
+    if (document.getElementById('dead').checked) {
+        showDead = "%";
+    } else { // If dead is not check only show trees that are alive
+        showDead = "alive";
+    }
 
-	// set the dbh if there is input in the boxes
-	if (document.getElementById('dbhmininput').value != "") {
-		dbhMin = document.getElementById('dbhmininput').value;
-	}
-	if (document.getElementById('dbhmaxinput').value != "") {
-		dbhMax = document.getElementById('dbhmaxinput').value;
-	}
+    // set the dbh if there is input in the boxes
+    if (document.getElementById('dbhmininput').value !== "") {
+        dbhMin = document.getElementById('dbhmininput').value;
+    }
+    if (document.getElementById('dbhmaxinput').value !== "") {
+        dbhMax = document.getElementById('dbhmaxinput').value;
+    }
 
-	// set the censusId if there is one in the box
-	if (document.getElementById('censusinput').value != "") {
-		censusId = document.getElementById('censusinput').value;		
-	}
+    // set the censusId if there is one in the box
+    if (document.getElementById('censusinput').value !== "") {
+        censusId = document.getElementById('censusinput').value;        
+    }
 
 
-	// get all genus in the list
-	var whereClause = "(";
-	for (i=0;i<searchKeys.length;i++) {
-		whereClause += "GenusSpecies LIKE '" + searchKeys[i] + "%'";
-		if (i<searchKeys.length-1) {
-			whereClause += " OR ";
-		}
-	}
-	whereClause += ") AND Status LIKE '"+showDead+"'"; // filter based on Dead button
-	whereClause += " AND DBH > "+dbhMin.toString()+" AND DBH < "+dbhMax.toString(); // filter based on DBH
-	if (censusId != "-1") { // filter by CensusId if there is one in the censusinput
-		whereClause += " AND CensusID = "+censusId;
-	}
-	console.log("STRI where clause: \n"+whereClause); // comma separated genus list
+    // get all genus in the list
+    var whereClause = "(";
+    for (i=0;i<searchKeys.length;i++) {
+        whereClause += "GenusSpecies LIKE '" + searchKeys[i] + "%'";
+        if (i<searchKeys.length-1) {
+            whereClause += " OR ";
+        }
+    }
+    whereClause += ") AND Status LIKE '"+showDead+"'"; // filter based on Dead button
+    whereClause += " AND DBH > "+dbhMin.toString()+" AND DBH < "+dbhMax.toString(); // filter based on DBH
+    if (censusId != "-1") { // filter by CensusId if there is one in the censusinput
+        whereClause += " AND CensusID = "+censusId;
+    }
+    console.log("STRI where clause: \n"+whereClause); // comma separated genus list
 
-	var xmlhttp;
-	if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-		xmlhttp = new XMLHttpRequest();
-	} else {// code for IE6, IE5
-		xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-	}
+    var xmlhttp;
+    if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } else {// code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
 
-	xmlhttp.open("GET", "php/query_for_location.php?where="+whereClause+"&type=stri", false); // post for security
-	xmlhttp.send(); // send variable to php script to query mysql db
-	var responseMessage = eval(xmlhttp.responseText); // get response from the query
+    xmlhttp.open("GET", "php/query_for_location.php?where="+whereClause+"&type=stri", false); // post for security
+    xmlhttp.send(); // send variable to php script to query mysql db
+    var responseMessage = eval(xmlhttp.responseText); // get response from the query
 
-	for (i=0; i<responseMessage.length-1;i++) {
-		var latlng = new google.maps.LatLng(responseMessage[i][1], responseMessage[i][0]); 
-		var icon = determineIcon(searchKeys, responseMessage[i], 2);
-		addMarker(latlng, responseMessage[i], icon);
-	}
+    for (i=0; i<responseMessage.length-1;i++) {
+        var latlng = new google.maps.LatLng(responseMessage[i][1], responseMessage[i][0]); 
+        var icon = determineIcon(searchKeys, responseMessage[i], 2);
+        addMarker(latlng, responseMessage[i], icon);
+    }
 }
 
 // Add a marker to the map and push to the array.
@@ -141,31 +138,89 @@ function addMarker(location, responseMessageCurrent, iconName) {
   markers.push(marker);
 }
 
+/*
+ * source == 1 is bien : source == 2 is stri
+ */
 function determineIcon(searchKeys, responseMessageCurrent, source) {
-	var bienIcons = ["small_yellow","small_green","small_blue","small_purple","measle_turquoise"];
-	var striIcons = ["square_yellow","square_green","square_blue","square_purple","square_turquoise"];
-	var res = responseMessageCurrent[2].split(" ");
-	var genusName = res[0];
-	var def = "images/";
-	var iconName = "images/";
+    var bienIcons = ["small_yellow","small_green","small_blue","small_purple","measle_turquoise"];
+    var striIcons = ["square_yellow","square_green","square_blue","square_purple","square_turquoise"];
+    var def = "images/";
+    var iconName = "images/";
 
-	if(source == 1) {
-		for(j = 0; j < searchKeys.length; j++) {
-			if(searchKeys[j] == genusName) 
-				iconName += bienIcons[j];
-		}
-	}
-	else if(source == 2) {
-		for(m = 0; m < searchKeys.length; m++) {
-			if(searchKeys[m] == genusName) 
-				iconName += striIcons[m];
-		}
-	}
-	
-	if(iconName == def)
-		iconName = "images/measle_turquoise";
-	
-	return iconName;
+    if(source == 1) { // bien
+        for(var i = 0; i < searchKeys.length; i++) { // for each search key
+            if (responseMessageCurrent[2].indexOf(searchKeys[i]) > -1) { // match responseMessage to searchKey
+                var iconIndex = getIconIndex(searchKeys[i],"bien");
+                deleteTableIcon(searchKeys[i]);
+                iconName += bienIcons[iconIndex];
+                setTableIcon(searchKeys[i], iconIndex, "bien", bienIcons);
+            }
+        }
+    } else if(source == 2) { // stri
+        for(var i = 0; i < searchKeys.length; i++) { // for each search key
+            if (responseMessageCurrent[2].indexOf(searchKeys[i]) > -1) { // match responseMessage to searchKey
+                var iconIndex = getIconIndex(searchKeys[i],"stri");
+                deleteTableIcon(searchKeys[i]);
+                iconName += striIcons[iconIndex];
+                setTableIcon(searchKeys[i], iconIndex, "stri", striIcons);
+            }
+        }
+    }
+    
+    if(iconName == def)
+        iconName = "images/measle_turquoise";
+    
+    return iconName;
+}
+
+// determines the index to use to get the icon from bienIcons or striIcons array
+// it will give the first icon in the icons array to the last item in the query table
+// it will give the second icon in the icons array to the second to last item in the query table
+function getIconIndex(searchKey,type) {
+    var rows = table.rows;
+    var totalCount = 0;
+    var index = 0;
+    for (var i = 0; i<rows.length; i++) {
+        var row = rows[i];
+
+        if (row.cells[2].innerHTML.indexOf(type) > -1) { // if it is bien, add to the count
+            totalCount++;
+        }
+        
+        if (row.cells[0].innerHTML == searchKey) {
+            // return rows.length-1-count;
+            index = totalCount;
+        }
+    }
+
+    iconIndex = totalCount-index;
+    if (iconIndex>5) {
+        return iconIndex%5;
+    } else {
+        return iconIndex;
+    }
+    return -1;
+}
+
+function deleteTableIcon(searchKey) {
+    var rows = table.rows;
+    for (var i = 0; i<rows.length; i++) {
+        var row = rows[i];
+        if (row.cells[0].innerHTML.indexOf(searchKey) > -1) {
+            row.deleteCell(2);
+        }
+    }
+}
+
+function setTableIcon(searchKey, iconIndex, type, icons) {
+    var rows = table.rows;
+    for (var i = 0; i<rows.length; i++) {
+        var row = rows[i];
+        if (row.cells[0].innerHTML == searchKey) {
+                var markerCell = row.insertCell(2);
+                markerCell.innerHTML = "<img id='"+type+"' src='images/"+icons[iconIndex]+".png' alt='image not found' >";
+        }
+    }
 }
 
 // Sets the map on all markers in the array.
@@ -179,75 +234,4 @@ function setAllMap(map) {
 function deleteMarkers() {
   setAllMap(null);
   markers = [];
-}
-
-function setMarkers(searchKeys, option) {
-	var bienIcons = ["small_yellow","small_green","small_blue","small_purple","measle_turquoise"/*,"measle_brown","measle_grey","measle_white"*/];
-	var striIcons = ["square_yellow","square_green","square_blue","square_purple","square_turquoise"];
-	var styles = new Array();
-	var rows = table.rows;
-
-	if(option == 1) {
-		for (i = 0; i<searchKeys.length; i++) {
-			// set an icon for each query in the query table
-			styles.push({
-					where: "Genus = "+"'"+searchKeys[searchKeys.length-(i+1)]+"'", // color stays with query while adding more queries
-					markerOptions: {
-						iconName: bienIcons[i] // if greater than 5 it will default to red
-					}
-			});
-
-			// add image of icon to query table
-			var row = rows[rows.length-(i+1)];
-			if (row.cells.length>=3) {
-				row.deleteCell(2);
-			}
-			var markerCell = row.insertCell(2);
-			if (i<5) { // only 5 options
-				markerCell.innerHTML = "<img id='bien' src='images/"+bienIcons[i]+".png' alt='image not found'>";
-			} else { // default to small_red
-				markerCell.innerHTML = "<img id='bien' src='images/small_red.png' alt='image not found'>";
-			}
-		}
-	}
-	else if(option == 2) {
-		for (i = 0; i<searchKeys.length; i++) {
-			// set an icon for each query in the query table
-			styles.push({
-					where: "Genus = "+"'"+searchKeys[searchKeys.length-(i+1)]+"'", // color stays with query while adding more queries
-					markerOptions: {
-						iconName: striIcons[i] // if greater than 5 it will default to red
-					}
-			});
-
-			// add image of icon to query table
-			var row = rows[rows.length-(i+1)];
-			if (row.cells.length>=3) {
-				row.deleteCell(2);
-			}
-			var markerCell = row.insertCell(2);
-			if (i<5) { // only 5 options
-				markerCell.innerHTML = "<img id='stri' src='images/"+striIcons[i]+".jpg' alt='image not found'>";
-			} else { // default to small_red
-				markerCell.innerHTML = "<img id='stri' src='images/small_red.png' alt='image not found'>";
-			}
-		}
-	}
-
-	layer.set('styles',styles);
-}
-
-/*-------------------------------------------unused currently-------------------------------------*/
-function setMapTips(whereClause) {
-	layer.disableMapTips(); // wipe previous map tips
-	layer.enableMapTips({
-		select: "'Latin','Family','Country','Province','Latitude','Longitude'", // list of columns for the map tip
-		from: '1EtC8wMoso-d59wgiTgXaGFTovW2-wcgdb25jNV8p', // fusion table name
-		where: whereClause, // filter on more than just geometryColumn
-		geometryColumn: 'Latitude', // geometry column names
-		suppressMapTips: false, // optional, whether to show map tips. default false
-		delay: 200, // milliseconds mouse pause before send a server query. default 300.
-		tolerance: 8, // tolerance in pixel around mouse. default is 6.
-		googleApiKey: "AIzaSyCnxStZYPcxJNBjAa7V96g__7lpv80jIMY" // generated with google developer console
-	});
 }
