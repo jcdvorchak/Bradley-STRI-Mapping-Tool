@@ -1,12 +1,13 @@
 <?php
 	include 'connect.php';
 
-	// List points from database
-	if (isset($_GET['where'])&&isset($_GET['type'])) {
+	if (isset($_GET['where'])&&isset($_GET['type'])) { // if where and type are set
 		$points = array();
 		if ($_GET['type']=='bien') { // query bien
+			// create query with where clause
 			$query = "SELECT Latitude, Longitude, Latin FROM bien_panama WHERE " . $_GET['where'] . "";
 
+			// run query and add results to queryResults
 	        if(!$result = $con->query($query)){
 	  		 	die('There was an error running the query [' . $con->error . ']');
 	      	} else {
@@ -15,8 +16,10 @@
 	      		}
 	    	}
     	} else if ($_GET['type']=='stri') { // query stri
+    		// create query with where clause
 			$query = "SELECT GX, GY, GenusSpecies FROM stri_bci WHERE " . $_GET['where'] . "";
 
+			// run query and add results to queryResults
 	        if(!$result = $con->query($query)){
 	  		 	die('There was an error running the query [' . $con->error . ']');
 	      	} else {
@@ -26,7 +29,7 @@
 	    	}
     	}
 
-		echo json_encode($points);
+		echo json_encode($points); // return results as json
 		exit;
 	}
 ?>

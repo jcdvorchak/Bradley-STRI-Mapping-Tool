@@ -1,3 +1,4 @@
+// variables to load content into when the page is loaded
 var bienGenusNames;
 var bienSpeciesNames;
 var bienLatinNames;
@@ -8,6 +9,7 @@ var striCensusIds;
 
 // get genus names from the bien_panama table
 function getBienGenusNames() {
+  // send request to query for list
   console.log("loading bien genus names");
   var xmlhttp;
   if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -23,6 +25,7 @@ function getBienGenusNames() {
 
 // get genus names from the stri_bci table
 function getStriGenusNames() {
+  // send request to query for list
   console.log("loading stri genus names");
   var xmlhttp;
   if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -38,6 +41,7 @@ function getStriGenusNames() {
 
 // get latin names from the bien_panama table
 function getBienLatinNames() {
+  // send request to query for list
   console.log("loading bien latin names");
   var xmlhttp;
   if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -53,6 +57,7 @@ function getBienLatinNames() {
 
 // get latin names from the stri_bci table
 function getStriLatinNames() {
+  // send request to query for list
   console.log("loading stri latin names");
   var xmlhttp;
   if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -68,6 +73,7 @@ function getStriLatinNames() {
 
 // get census ids from the stri_bci table
 function getStriCensusIds() {
+  // send request to query for list
   console.log("loading census ids");
   var xmlhttp;
   if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -82,6 +88,8 @@ function getStriCensusIds() {
 }
 
 // separate species from genus in LatinNames from the bien_panama table
+// bienSpeciesNames is populated with pairs and genus/species are flipped
+// i.e. bienSpeciesNames[0][0] = speciesName and bienSpeciesNames[0][1] = genusName 
 function extractBienSpecies(bienLatinNames) {
   bienSpeciesNames = new Array();
 
@@ -98,7 +106,9 @@ function extractBienSpecies(bienLatinNames) {
   bienSpeciesNames.sort();
 }
 
-// separate species from genus in LatinNames from the bien_panama table
+// separate species from genus in GenusSpecies from the stri_bci table
+// striSpeciesNames is populated with pairs and genus/species are flipped
+// i.e. striSpeciesNames[0][0] = speciesName and striSpeciesNames[0][1] = genusName
 function extractStriSpecies(striLatinNames) {
   striSpeciesNames = new Array();
 
@@ -115,6 +125,9 @@ function extractStriSpecies(striLatinNames) {
   striSpeciesNames.sort();
 }
 
+// determines if name is the first speciesName in the list
+// speciesNames - list to check in
+// name - species name to check for
 function isFirstSpecies(speciesNames,name) {
   var exists = true;
   for (var j = 0; j<speciesNames.length-1; j++) {
@@ -127,6 +140,7 @@ function isFirstSpecies(speciesNames,name) {
   return exists;
 }
 
+// call the above functions
 getBienGenusNames();
 getBienLatinNames();
 extractBienSpecies(bienLatinNames);
@@ -135,10 +149,11 @@ getStriLatinNames();
 extractStriSpecies(striLatinNames);
 getStriCensusIds();
 
-// populate search box autocomplete
+// populate search box autocomplete (called when searchBox is selected)
 function loadAutocomplete() {
   var dataArray1 = [];
 
+  // check type then add all of that types latin names to the autocomplete
   if (document.getElementById('bien').checked) {
     for (i=0; i<bienLatinNames.length-1;i++){
         var ele1 = bienLatinNames[i][0];
@@ -156,7 +171,7 @@ function loadAutocomplete() {
   });
 }
 
-// populate genusDropdown
+// populate genusDropdown (when it is clicked)
 function genusDropdown () {
   var ul = document.getElementById("genuslist");
   if (ul) {
@@ -165,6 +180,7 @@ function genusDropdown () {
       }
   }
   
+  // check type then add all genus names of that type to the dropdown
   if (document.getElementById('bien').checked) {
     for (i=0; i<bienGenusNames.length-1;i++) {
         var ele1 = bienGenusNames[i][0];
@@ -186,7 +202,7 @@ function genusDropdown () {
   }
 }
 
-// populate species dropdown
+// populate species dropdown (when it is clicked)
 function speciesDropdown () {
   var ul = document.getElementById("specieslist");
   if (ul) {
@@ -195,6 +211,7 @@ function speciesDropdown () {
       }
   }
   
+  // check type then add all species names of that type to the dropdown
   if (document.getElementById('bien').checked) {
     for (i=0; i<bienSpeciesNames.length-1;i++) {
         var species = bienSpeciesNames[i][0];
@@ -218,7 +235,7 @@ function speciesDropdown () {
   }
 }
 
-// populate dbh min dropdown
+// populate dbh min dropdown (when it is clicked)
 function dbhMinDropdown() {
   var dbhminlist = document.getElementById("dbhminlist");
   if (dbhminlist) {
@@ -238,7 +255,7 @@ function dbhMinDropdown() {
   }
 }
 
-// populate dbh max dropdown
+// populate dbh max dropdown (when it is clicked)
 function dbhMaxDropdown() {
   var dbhmaxlist = document.getElementById("dbhmaxlist");
   if (dbhmaxlist) {
@@ -258,7 +275,7 @@ function dbhMaxDropdown() {
   }
 }
 
-// populate census dropdown with CensusID
+// populate census dropdown with CensusID (when it is clicked)
 function censusDropdown() {
   var ul = document.getElementById("censuslist");
   if (ul) {
@@ -278,6 +295,7 @@ function censusDropdown() {
     }
 }
 
+// add an empty node that with fill the form out with a blank input
 function addEmptyNode(list) {
   var node = document.createElement("li");
   var textnode = document.createTextNode("(empty)"); // what to show in the drop down

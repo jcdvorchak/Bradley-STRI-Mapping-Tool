@@ -1,3 +1,4 @@
+// function to hide the user interface when 'Toggle UI' is pressed
 function toggleAll() {
 	$( ".btn-group" ).fadeToggle( "slow", "linear" );
 	$( "#QueryListing" ).fadeToggle( "slow", "linear" );

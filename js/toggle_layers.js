@@ -1,3 +1,4 @@
+// create fusion tables layers
 var riverLayer = new google.maps.FusionTablesLayer({
 	query: {
 		select: 'geometry',
@@ -22,6 +23,7 @@ var protectedLayer = new google.maps.FusionTablesLayer({
 	styleId: 2
 });
 
+// change / update layers when one is selected or deselected
 function changeLayer() {
 	var rLayer = document.getElementById("layer1").checked;
 	var aLayer = document.getElementById("layer2").checked;
