@@ -2,15 +2,16 @@ var markers = [];
 
 // Main function that is called when the "Plot all" button is pressed
 function plotAll() {
-    //var table;
-
     // Determine country tab in use
-    var activeTab = document.getElementsByClassName('tab-pane active')[0];
-    if(activeTab.id === "panama") {
-        table = document.getElementById("listTablePanama");
-    } else if(activeTab.id === "colombia") {
-        table = document.getElementById("listTableColombia");
-    }
+    // var activeTab = document.getElementsByClassName('tab-pane active')[0];
+    // if(activeTab.id === "panama") {
+    //     table = document.getElementById("listTablePanama");
+    // } else if(activeTab.id === "colombia") {
+    //     table = document.getElementById("listTableColombia");
+    // }
+
+    //*** Above code would be for multiple country extension. default to Panama table for now.
+    table = document.getElementById("listTablePanama");
 
     // add query table entries to bien and stri arrays
     if (table.rows.length > 0) { // if there are entries in the query table
@@ -141,7 +142,7 @@ function plotStriData(searchKeys) {
 
 // Add a marker to the map and push to the array.
 // location - google.maps.LatLng object
-// // responseMessageCurrent - responseMessage we are currently using
+// responseMessageCurrent - responseMessage we are currently using
 function addMarker(location, responseMessageCurrent, iconName) {
     // create html content to be shown when a marker is clicked
     var contentString = "<p><b>Latin name:</b> " + responseMessageCurrent[2] +"</p>"
@@ -229,10 +230,11 @@ function getIconIndex(searchKey,type) {
             index = totalCount; // save current spot
         }
     }
-
+    
     iconIndex = totalCount-index; // return modified index
-    if (iconIndex>5) { // if it is more than five, repeat icons
-        return iconIndex%5;
+    var maxIcons = 5;
+    if (iconIndex>=maxIcons) { // if it is more than five, repeat icons
+        return iconIndex%maxIcons;
     } else {
         return iconIndex;
     }

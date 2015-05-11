@@ -21,8 +21,7 @@ function initialize() {
         mapTypeControlOptions: {
             position: google.maps.ControlPosition.RIGHT_BOTTOM,
             style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
-        }//,
-        //suppressInfoWindows:true
+        }
     };
 
     map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);

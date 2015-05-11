@@ -2,14 +2,17 @@ var table;
 
 // add content in the searchbox to the query table when 'Add' is clicked
 function addToList(TreeText) {
-    // decide which country tab is in use
-    var activeTab = document.getElementsByClassName('tab-pane active')[0];
-    if(activeTab.id == "panama") {
-        table = document.getElementById("listTablePanama");
-    }
-    else if(activeTab.id == "colombia") {
-        table = document.getElementById("listTableColombia");
-    }
+    // Decide which country tab is in use
+    // var activeTab = document.getElementsByClassName('tab-pane active')[0];
+    // if(activeTab.id == "panama") {
+    //     table = document.getElementById("listTablePanama");
+    // }
+    // else if(activeTab.id == "colombia") {
+    //     table = document.getElementById("listTableColombia");
+    // }
+
+    //*** Above code would be for multiple country extension. default to Panama table for now.
+    table = document.getElementById("listTablePanama");
 
     // create the row and all appropriate cells
     var row = table.insertRow(0);
