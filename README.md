@@ -5,9 +5,9 @@ STRI Mapping Tool for CS 490 Capstone
 
 Mapping Tool Documentation
 ==========================
-Bradley University, Department of Computer Science and Information Systems
-Joey Dvorchak, Vidya Achanta, Anthony Giangiulio
-May 10, 2015
+######Bradley University, Department of Computer Science and Information Systems
+######Joey Dvorchak, Vidya Achanta, Anthony Giangiulio
+######May 10, 2015
 
 The application can currently be accessed at the link below. Google Chrome will provide the best experience.
 https://capstone.bradley.edu/~capstoneclass/Bradley-STRI-Mapping-Tool/index.html
@@ -74,7 +74,7 @@ To add or change images the following steps must be followed:
 - Update the image names to the bienIcons and striIcons arrays in the function determineIcon() in plot_all_button.js.
 - Edit the maxIcons variable in getIconIndex() in plot_all_button.js. In this case it is 5 because there are only 5 icons.
 
-#####Additional notes:
+Additional notes:
 - Be sure both striIcons and bienIcons have the same number of icons.
 - Be sure that the images are type .png or the code in setTableIcon() in plot_all_button.js must be changed.
 - All other functions should work as expected after these changes with the new image icons.
